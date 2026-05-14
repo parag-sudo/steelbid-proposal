@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SteelBid — Project Proposal</title>
+  <style>
+    :root {
+      --navy:   #0d1b2a;
+      --steel:  #1b3a5c;
+      --mid:    #2c5f8a;
+      --accent: #e07b2a;
+      --gold:   #f5a623;
+      --light:  #e8edf2;
+      --muted:  #7a8fa6;
+      --white:  #ffffff;
+      --green:  #2e7d52;
+      --red:    #c0392b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ─── COVER PAGE ─── */
+    .cover {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 60%, var(--mid) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.015) 40px,
+        rgba(255,255,255,0.015) 80px
+      );
+    }
+
+    .cover-badge {
+      background: var(--accent);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 20px;
+      margin-bottom: 32px;
+    }
+
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .logo-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--accent);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .cover h1 {
+      font-size: clamp(42px, 8vw, 72px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .cover h1 span { color: var(--gold); }
+
+    .cover-tagline {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 16px;
+      max-width: 560px;
+      font-weight: 300;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin: 36px auto;
+      border-radius: 2px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cover-meta-item {
+      text-align: center;
+    }
+
+    .cover-meta-item .label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .cover-meta-item .value {
+      font-size: 15px;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 32px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    /* ─── PROBLEM CARDS ─── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .problem-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      border-left: 4px solid var(--red);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .problem-card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .problem-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .problem-card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── SOLUTION HIGHLIGHT ─── */
+    .solution-highlight {
+      background: linear-gradient(135deg, var(--navy), var(--steel));
+      border-radius: 24px;
+      padding: 56px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .solution-highlight::after {
+      content: '⚙';
+      position: absolute;
+      right: 40px;
+      top: 30px;
+      font-size: 120px;
+      opacity: 0.05;
+    }
+
+    .solution-highlight .section-title { color: var(--white); }
+
+    .solution-highlight .section-label { color: var(--gold); }
+
+    .solution-highlight p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    .solution-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: left;
+    }
+
+    .stat .number {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: -2px;
+    }
+
+    .stat .desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ─── FEATURES ─── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-top: 3px solid transparent;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .feature-card.accent-orange { border-top-color: var(--accent); }
+    .feature-card.accent-blue   { border-top-color: var(--mid); }
+    .feature-card.accent-gold   { border-top-color: var(--gold); }
+    .feature-card.accent-green  { border-top-color: var(--green); }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .bg-orange { background: rgba(224,123,42,0.12); }
+    .bg-blue   { background: rgba(44,95,138,0.12); }
+    .bg-gold   { background: rgba(245,166,35,0.12); }
+    .bg-green  { background: rgba(46,125,82,0.12); }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .feature-list li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 3px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 4px;
+    }
+
+    /* ─── FLOW DIAGRAM ─── */
+    .flow-wrap {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+
+    .flow-steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      position: relative;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -12px;
+      top: 20px;
+      font-size: 20px;
+      color: var(--muted);
+      z-index: 1;
+    }
+
+    .flow-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--mid));
+      color: var(--white);
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      box-shadow: 0 4px 12px rgba(13,27,42,0.25);
+    }
+
+    .flow-step h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .flow-step p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ─── TRANSACTION FLOW ─── */
+    .txn-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .txn-box {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .txn-box .emoji { font-size: 28px; margin-bottom: 8px; }
+
+    .txn-box h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .txn-box p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .txn-arrow {
+      text-align: center;
+      font-size: 24px;
+      color: var(--accent);
+    }
+
+    .txn-label {
+      text-align: center;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* ─── TECH STACK ─── */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .tech-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 3px solid var(--accent);
+    }
+
+    .tech-card .layer {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .tech-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .tech-card p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ─── PHASES ─── */
+    .phases-timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .phases-timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--mid));
+      border-radius: 2px;
+    }
+
+    .phase {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .phase::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .phase-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .phase-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    .badge-orange { background: rgba(224,123,42,0.15); color: var(--accent); }
+    .badge-blue   { background: rgba(44,95,138,0.15); color: var(--mid); }
+    .badge-gold   { background: rgba(245,166,35,0.15); color: #b07d10; }
+    .badge-green  { background: rgba(46,125,82,0.15); color: var(--green); }
+
+    .phase-duration {
+      font-size: 12px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .phase-body {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .phase-body ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 6px 16px;
+    }
+
+    .phase-body ul li {
+      font-size: 13.5px;
+      color: var(--muted);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .phase-body ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* ─── COMPETITORS ─── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+
+    .compare-table th {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 16px 20px;
+      text-align: left;
+    }
+
+    .compare-table th:first-child { border-radius: 0; }
+
+    .compare-table td {
+      padding: 14px 20px;
+      font-size: 14px;
+      color: var(--navy);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    .compare-table tr.highlight-row td {
+      background: rgba(224,123,42,0.06);
+      font-weight: 600;
+    }
+
+    .compare-table tr.highlight-row td:first-child {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .pill-green { background: rgba(46,125,82,0.12); color: var(--green); }
+    .pill-red   { background: rgba(192,57,43,0.1); color: var(--red); }
+    .pill-muted { background: rgba(122,143,166,0.12); color: var(--muted); }
+
+    /* ─── BUSINESS MODEL ─── */
+    .revenue-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .revenue-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+
+    .revenue-card .rev-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .revenue-card .rev-pct {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -1px;
+    }
+
+    .revenue-card .rev-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .revenue-card .rev-note {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* ─── TEAM / SIGN OFF ─── */
+    .signoff {
+      background: linear-gradient(135deg, var(--navy), var(--steel));
+      color: var(--white);
+      border-radius: 24px;
+      padding: 56px;
+      text-align: center;
+    }
+
+    .signoff h2 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .signoff p {
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 40px;
+      padding: 10px 24px;
+      font-size: 14px;
+      color: var(--white);
+    }
+
+    /* ─── CALLOUT BOX ─── */
+    .callout {
+      background: rgba(224,123,42,0.08);
+      border: 1px solid rgba(224,123,42,0.25);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 14px;
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    /* ─── PAGE BREAKS FOR PRINT ─── */
+    @media print {
+      .cover { min-height: 100vh; page-break-after: always; }
+      section { page-break-inside: avoid; }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 20px; }
+      .cover { padding: 40px 24px; }
+      .solution-highlight { padding: 36px 24px; }
+      .signoff { padding: 36px 24px; }
+      .txn-flow { grid-template-columns: 1fr; }
+      .txn-arrow { transform: rotate(90deg); }
+      .flow-steps { flex-direction: column; }
+      .flow-step:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <div class="cover-badge">Project Proposal · Confidential</div>
+
+  <div class="cover-logo">
+    <div class="logo-icon">⚙</div>
+  </div>
+
+  <h1>Steel<span>Bid</span></h1>
+  <div class="cover-tagline">
+    A real-time B2B steel auction platform — built for volume, trust, and scale.
+  </div>
+
+  <div class="cover-divider"></div>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="label">Prepared For</span>
+      <span class="value">Deepak Ranjan</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="label">Prepared By</span>
+      <span class="value">Think To Share</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="label">Date</span>
+      <span class="value">May 13, 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="label">Version</span>
+      <span class="value">1.0</span>
+    </div>
+  </div>
+
+  <div class="cover-footer">THINK TO SHARE &nbsp;·&nbsp; parag@thinktoshare.com</div>
+</div>
+
+
+<!-- ═══════════════ EXECUTIVE SUMMARY ═══════════════ -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-label">01 · Executive Summary</div>
+    <h2 class="section-title">The Opportunity</h2>
+    <p class="section-subtitle">
+      India's mid-tier steel market lacks a reliable, independent auction platform. Large players (JSW, Tata, SAIL) run proprietary platforms exclusively for their own inventory. Smaller manufacturers — Shyam Steel, Captain Steel, SRMB, and hundreds like them — have no comparable channel.
+    </p>
+
+    <div class="callout">
+      <strong>SteelBid</strong> is a cloud-based, real-time B2B auction marketplace that connects smaller steel manufacturers with verified large distributors and dealers. It replicates the experience of enterprise platforms like Mjunction and SteelEasy — at a fraction of the commission cost — while being designed from day one to handle lakh-scale concurrent bidding.
+    </div>
+
+    <div class="solution-stats" style="margin-top: 32px;">
+      <div class="stat">
+        <div class="number">3%</div>
+        <div class="desc" style="color: var(--muted);">Seller Commission</div>
+      </div>
+      <div class="stat">
+        <div class="number">₹100</div>
+        <div class="desc" style="color: var(--muted);">Minimum Bid Increment</div>
+      </div>
+      <div class="stat">
+        <div class="number">1</div>
+        <div class="desc" style="color: var(--muted);">Bidder Per Company</div>
+      </div>
+      <div class="stat">
+        <div class="number">100%</div>
+        <div class="desc" style="color: var(--muted);">Real-Time Visibility</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ PROBLEM ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">02 · Problem Statement</div>
+    <h2 class="section-title">What Is Broken Today</h2>
+    <p class="section-subtitle">
+      Mid-tier steel companies face structural disadvantages that limit their market reach and pricing power.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="icon">🏭</div>
+        <h4>No Independent Platform</h4>
+        <p>Mjunction, Steelmart, and SteelEasy are either proprietary to large steel groups or focused on large enterprises, leaving hundreds of smaller manufacturers without a digital auction channel.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <h4>High Commission Rates</h4>
+        <p>Existing independent platforms charge 0.35%–0.75% commission. At scale, this significantly erodes seller margins, especially for commodity-grade steel where margins are already thin.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📉</div>
+        <h4>Limited Buyer Reach</h4>
+        <p>Without their own platforms or large sales teams, smaller manufacturers cannot reach the large network of distributors and dealers needed to maximize auction price discovery.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⚡</div>
+        <h4>No Real-Time Bidding</h4>
+        <p>Traditional offline auctions or email-based RFQs are slow, opaque, and non-competitive. There is no real-time bidding infrastructure accessible to mid-market sellers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SOLUTION ═══════════════ -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="solution-highlight">
+      <div class="section-label">03 · Our Solution</div>
+      <h2 class="section-title">SteelBid Platform</h2>
+      <p>
+        SteelBid is a purpose-built, real-time auction platform for the Indian steel industry. Sellers list their inventory with full specifications and photos. Verified buyers bid live with full transparency. The highest bid wins — automatically. Payments flow through the platform, and both parties are protected at every step.
+      </p>
+      <div class="solution-stats">
+        <div class="stat">
+          <div class="number">Real-Time</div>
+          <div class="desc">Live bid updates for all participants</div>
+        </div>
+        <div class="stat">
+          <div class="number">Scalable</div>
+          <div class="desc">Architected for lakh-scale traffic</div>
+        </div>
+        <div class="stat">
+          <div class="number">Trusted</div>
+          <div class="desc">KYC verification + escrow payments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ FEATURES ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">04 · Platform Features</div>
+    <h2 class="section-title">What We Are Building</h2>
+    <p class="section-subtitle">Six core modules that together deliver a complete auction experience.</p>
+
+    <div class="features-grid">
+
+      <div class="feature-card accent-orange">
+        <div class="feature-icon bg-orange">📣</div>
+        <h3>Pre-Auction Notifications</h3>
+        <p>Automated bulk outreach to all registered buyers before each auction goes live.</p>
+        <ul class="feature-list">
+          <li>WhatsApp bulk messaging</li>
+          <li>Email campaigns</li>
+          <li>Auction preview with product specs</li>
+          <li>Scheduled timing reminders</li>
+        </ul>
+      </div>
+
+      <div class="feature-card accent-blue">
+        <div class="feature-icon bg-blue">📦</div>
+        <h3>Product Listing Module</h3>
+        <p>Rich, steel-specific listing forms with all critical dimensions and quality attributes.</p>
+        <ul class="feature-list">
+          <li>Length, width, thickness fields</li>
+          <li>Shape: sheet / coil / round / tube</li>
+          <li>Quality grade: prime / defective / scrap</li>
+          <li>Photo uploads (3–4 images per lot)</li>
+          <li>Total quantity & base price</li>
+        </ul>
+      </div>
+
+      <div class="feature-card accent-gold">
+        <div class="feature-icon bg-gold">⚡</div>
+        <h3>Live Bidding Engine</h3>
+        <p>Real-time, WebSocket-powered bidding room visible to all participants simultaneously.</p>
+        <ul class="feature-list">
+          <li>Bids in ₹100 multiples</li>
+          <li>Instant display to all viewers</li>
+          <li>3-minute bid-alive extension</li>
+          <li>Simultaneous multi-lot support</li>
+          <li>Anti-snipe auto-extension</li>
+        </ul>
+      </div>
+
+      <div class="feature-card accent-green">
+        <div class="feature-icon bg-green">🔐</div>
+        <h3>KYC & Access Control</h3>
+        <p>Rigorous onboarding to ensure only serious, verified buyers participate in auctions.</p>
+        <ul class="feature-list">
+          <li>GST number verification</li>
+          <li>Bank account validation</li>
+          <li>One login per company (default)</li>
+          <li>Paid additional logins</li>
+          <li>Refundable security deposit</li>
+        </ul>
+      </div>
+
+      <div class="feature-card accent-orange">
+        <div class="feature-icon bg-orange">💳</div>
+        <h3>Payment & Escrow</h3>
+        <p>Three-stage payment flow protecting buyers, sellers, and the platform at every transaction.</p>
+        <ul class="feature-list">
+          <li>Registration deposit collection</li>
+          <li>Winner payment within 2 working days</li>
+          <li>Platform holds funds in escrow</li>
+          <li>Release to seller on dispatch</li>
+          <li>Deposit forfeiture on default</li>
+        </ul>
+      </div>
+
+      <div class="feature-card accent-blue">
+        <div class="feature-icon bg-blue">🔔</div>
+        <h3>Post-Auction Workflow</h3>
+        <p>Automated post-auction communications and delivery tracking to close the loop.</p>
+        <ul class="feature-list">
+          <li>Winner congratulation message</li>
+          <li>Payment instructions & deadline</li>
+          <li>Seller dispatch notification</li>
+          <li>Buyer delivery update</li>
+          <li>Auction history & reporting</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ AUCTION FLOW ═══════════════ -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-label">05 · How It Works</div>
+    <h2 class="section-title">Auction Lifecycle</h2>
+    <p class="section-subtitle">From seller listing to buyer delivery — the complete end-to-end journey.</p>
+
+    <div class="flow-wrap">
+      <div class="flow-steps">
+
+        <div class="flow-step">
+          <div class="flow-circle">1</div>
+          <h4>Seller Lists</h4>
+          <p>Uploads specs, photos, base price & auction date</p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-circle">2</div>
+          <h4>Notify Buyers</h4>
+          <p>Bulk WhatsApp + email sent to all registered buyers</p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-circle">3</div>
+          <h4>Auction Opens</h4>
+          <p>Live bidding room opens at scheduled time</p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-circle">4</div>
+          <h4>Real-Time Bids</h4>
+          <p>Buyers bid in ₹100 increments; all see live updates</p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-circle">5</div>
+          <h4>Auction Closes</h4>
+          <p>Highest bid wins; 3-min extension if late bid placed</p>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-circle">6</div>
+          <h4>Payment & Dispatch</h4>
+          <p>Winner pays; platform releases funds to seller on dispatch</p>
+        </div>
+
+      </div>
+
+      <!-- Transaction Flow -->
+      <h3 style="font-size:15px; font-weight:700; color:var(--navy); margin: 40px 0 24px;">Payment Flow</h3>
+      <div class="txn-flow">
+        <div class="txn-box">
+          <div class="emoji">🏢</div>
+          <h4>Buyer</h4>
+          <p>Deposits bid amount within 2 working days</p>
+        </div>
+        <div>
+          <div class="txn-arrow">→</div>
+          <div class="txn-label">Payment</div>
+        </div>
+        <div class="txn-box" style="background: var(--accent);">
+          <div class="emoji">🏦</div>
+          <h4>SteelBid Escrow</h4>
+          <p>Holds funds until dispatch confirmed</p>
+        </div>
+        <div>
+          <div class="txn-arrow">→</div>
+          <div class="txn-label">On dispatch</div>
+        </div>
+        <div class="txn-box">
+          <div class="emoji">🏭</div>
+          <h4>Seller</h4>
+          <p>Receives payment minus 3% platform commission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ TECH STACK ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">06 · Technical Architecture</div>
+    <h2 class="section-title">Built for Scale & Reliability</h2>
+    <p class="section-subtitle">
+      A modern, cloud-native stack designed to handle lakh-scale concurrent users with real-time performance and 99.9% uptime.
+    </p>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="layer">Frontend</div>
+        <h4>React + TypeScript</h4>
+        <p>Fast, responsive UI with real-time WebSocket updates. Works on desktop and mobile browsers.</p>
+      </div>
+      <div class="tech-card">
+        <div class="layer">Real-Time Engine</div>
+        <h4>WebSockets / Redis Pub-Sub</h4>
+        <p>Sub-100ms bid propagation to all connected users simultaneously, regardless of volume.</p>
+      </div>
+      <div class="tech-card">
+        <div class="layer">Backend API</div>
+        <h4>Node.js / Python FastAPI</h4>
+        <p>High-throughput REST + WebSocket server with auction logic, KYC, and payment orchestration.</p>
+      </div>
+      <div class="tech-card">
+        <div class="layer">Database</div>
+        <h4>PostgreSQL + Redis</h4>
+        <p>Relational store for users, listings, bids. Redis for real-time bid cache and session management.</p>
+      </div>
+      <div class="tech-card">
+        <div class="layer">Messaging</div>
+        <h4>WhatsApp Business API + SendGrid</h4>
+        <p>Programmatic bulk WhatsApp and transactional email delivery at scale.</p>
+      </div>
+      <div class="tech-card">
+        <div class="layer">Payments</div>
+        <h4>Razorpay / Cashfree</h4>
+        <p>PCI-compliant payment gateway with escrow support, UPI, NEFT, and IMPS.</p>
+      </div>
+      <div class="tech-card">
+        <div class="layer">Infrastructure</div>
+        <h4>AWS / GCP Cloud</h4>
+        <p>Auto-scaling compute, CDN for media delivery, load balancers for high-concurrency auctions.</p>
+      </div>
+      <div class="tech-card">
+        <div class="layer">Storage</div>
+        <h4>S3 / Cloud Storage</h4>
+        <p>Fast, CDN-backed image delivery for product photos with automatic compression and resizing.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 40px;">
+      <strong>Scalability Note:</strong> The platform will be architected with horizontal scaling from day one. Even during peak auctions when lakhs of users connect simultaneously, the WebSocket infrastructure and Redis pub-sub layer ensure every bid is broadcast to all participants within milliseconds — matching the responsiveness of Mjunction-class enterprise platforms.
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ COMPETITION ═══════════════ -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-label">07 · Competitive Landscape</div>
+    <h2 class="section-title">Where We Stand</h2>
+    <p class="section-subtitle">SteelBid enters the market as the most competitive independent platform — matching enterprise-grade experience at the lowest commission.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Owner</th>
+          <th>Target Segment</th>
+          <th>Commission</th>
+          <th>Open to All Sellers?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Mjunction</strong></td>
+          <td>SAIL + Tata JV</td>
+          <td>Internal / Enterprise</td>
+          <td><span class="pill pill-muted">Internal</span></td>
+          <td><span class="pill pill-red">No</span></td>
+        </tr>
+        <tr>
+          <td><strong>Steelmart (JSW)</strong></td>
+          <td>JSW Group</td>
+          <td>JSW Products Only</td>
+          <td><span class="pill pill-muted">~0.75%</span></td>
+          <td><span class="pill pill-red">No</span></td>
+        </tr>
+        <tr>
+          <td><strong>SteelEasy</strong></td>
+          <td>Independent</td>
+          <td>Mid-Market</td>
+          <td><span class="pill pill-muted">~0.35%</span></td>
+          <td><span class="pill pill-green">Yes</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>SteelBid ★</strong></td>
+          <td>Think To Share</td>
+          <td>Mid-Market &amp; SME</td>
+          <td><span class="pill pill-green">~0.3%</span></td>
+          <td><span class="pill pill-green">Yes</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ═══════════════ BUSINESS MODEL ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">08 · Business Model</div>
+    <h2 class="section-title">Revenue Streams</h2>
+    <p class="section-subtitle">A lean, volume-driven model. Revenue scales directly with platform usage — no upfront cost to buyers.</p>
+
+    <div class="revenue-cards">
+      <div class="revenue-card">
+        <div class="rev-icon">💰</div>
+        <div class="rev-pct">3%</div>
+        <div class="rev-label">Commission on each successful auction, charged to seller only</div>
+        <div class="rev-note">Primary Revenue Stream</div>
+      </div>
+      <div class="revenue-card">
+        <div class="rev-icon">🔐</div>
+        <div class="rev-pct">₹5,000</div>
+        <div class="rev-label">Refundable buyer registration deposit — ensures only serious participants</div>
+        <div class="rev-note">Trust Filter</div>
+      </div>
+      <div class="revenue-card">
+        <div class="rev-icon">🔑</div>
+        <div class="rev-pct">Paid</div>
+        <div class="rev-label">Additional login credentials beyond the first can be purchased by each company</div>
+        <div class="rev-note">Upsell Opportunity</div>
+      </div>
+      <div class="revenue-card">
+        <div class="rev-icon">📊</div>
+        <div class="rev-pct">Float</div>
+        <div class="rev-label">Short-term float income on funds held in escrow between payment and dispatch</div>
+        <div class="rev-note">Secondary Revenue</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 32px;">
+      <strong>Unit Economics Example:</strong> A single auction of 100 tonnes of steel at ₹50,000/tonne = ₹50,00,000 transaction value. At 3% commission = <strong>₹1,50,000 per auction</strong>. Running 10 auctions per month = ₹15,00,000/month gross revenue. Payment gateway costs (~0.5%) = ₹25,000 per auction. Net margin per auction ≈ ₹1,25,000.
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ PHASES ═══════════════ -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="section-label">09 · Implementation Plan</div>
+    <h2 class="section-title">Phased Delivery</h2>
+    <p class="section-subtitle">A structured, four-phase rollout from MVP to full-scale platform.</p>
+
+    <div class="phases-timeline">
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-title">Phase 1 — Foundation</span>
+          <span class="phase-badge badge-orange">MVP</span>
+          <span class="phase-duration">Months 1–2</span>
+        </div>
+        <div class="phase-body">
+          <ul>
+            <li>User registration & KYC (GST + bank)</li>
+            <li>Seller product listing with photo upload</li>
+            <li>Basic auction room with real-time bidding</li>
+            <li>Email notification system</li>
+            <li>Admin panel for auction management</li>
+            <li>Basic payment gateway integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-title">Phase 2 — Core Auctions</span>
+          <span class="phase-badge badge-blue">Beta</span>
+          <span class="phase-duration">Months 3–4</span>
+        </div>
+        <div class="phase-body">
+          <ul>
+            <li>WhatsApp bulk notification integration</li>
+            <li>Escrow payment flow (hold → release)</li>
+            <li>Security deposit management</li>
+            <li>Auto-extension (3-min bid-alive)</li>
+            <li>Simultaneous multi-lot auction support</li>
+            <li>Winner notification & post-auction workflow</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-title">Phase 3 — Scale & Trust</span>
+          <span class="phase-badge badge-gold">Growth</span>
+          <span class="phase-duration">Months 5–6</span>
+        </div>
+        <div class="phase-body">
+          <ul>
+            <li>Load testing for lakh-scale concurrency</li>
+            <li>Performance optimization & CDN setup</li>
+            <li>Seller dispatch + buyer delivery tracking</li>
+            <li>Bid history & analytics dashboard</li>
+            <li>Mobile-optimized responsive UI</li>
+            <li>Security audit & penetration testing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-title">Phase 4 — Market Launch</span>
+          <span class="phase-badge badge-green">Launch</span>
+          <span class="phase-duration">Month 7+</span>
+        </div>
+        <div class="phase-body">
+          <ul>
+            <li>Onboard first 5–10 seller companies</li>
+            <li>Onboard first cohort of verified buyers</li>
+            <li>Run first live auctions</li>
+            <li>Collect feedback and iterate</li>
+            <li>SLA monitoring and uptime dashboards</li>
+            <li>Growth: eastern India steel market focus</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ KEY PRINCIPLES ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">10 · Design Principles</div>
+    <h2 class="section-title">What We Will Never Compromise On</h2>
+    <p class="section-subtitle">Three non-negotiable pillars that define every decision on this platform.</p>
+
+    <div class="features-grid">
+      <div class="feature-card accent-orange" style="text-align:center; padding: 40px 32px;">
+        <div style="font-size: 48px; margin-bottom: 16px;">⚡</div>
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Performance</h3>
+        <p>Every bid must propagate to every viewer in under 200ms. If the platform freezes during a live auction, trust is destroyed instantly. Speed is not a feature — it is the product.</p>
+      </div>
+      <div class="feature-card accent-blue" style="text-align:center; padding: 40px 32px;">
+        <div style="font-size: 48px; margin-bottom: 16px;">🛡️</div>
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Trust</h3>
+        <p>Every buyer must be KYC-verified. Every payment must be protected. Every delivery must be tracked. A single default or fraud incident will cost us the market. Trust is earned in months, lost in minutes.</p>
+      </div>
+      <div class="feature-card accent-gold" style="text-align:center; padding: 40px 32px;">
+        <div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
+        <h3 style="font-size: 20px; margin-bottom: 12px;">Simplicity</h3>
+        <p>Steel traders are not tech users. The platform must be so simple that a first-time visitor can find the right auction, log in, and bid within 60 seconds. No tutorials. No confusion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SIGN OFF ═══════════════ -->
+<section style="background: var(--light); padding: 80px 0;">
+  <div class="container">
+    <div class="signoff">
+      <h2>Let's Build This Together</h2>
+      <p>We are ready to move immediately. The team at Think To Share has the technical depth to deliver a platform that matches Mjunction in quality — and beats the market on pricing.</p>
+
+      <div class="contact-row">
+        <div class="contact-pill">
+          <span>👤</span>
+          <span>Parag Nandy Roy</span>
+        </div>
+        <div class="contact-pill">
+          <span>✉️</span>
+          <span>parag@thinktoshare.com</span>
+        </div>
+        <div class="contact-pill">
+          <span>🏢</span>
+          <span>Think To Share</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 40px; font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 1px;">
+        CONFIDENTIAL · FOR DISCUSSION PURPOSES ONLY · © 2026 THINK TO SHARE
+      </p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
