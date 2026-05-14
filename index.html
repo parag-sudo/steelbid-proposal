@@ -751,10 +751,47 @@
       .cover { padding: 40px 24px; }
       .solution-highlight { padding: 36px 24px; }
       .signoff { padding: 36px 24px; }
-      .txn-flow { grid-template-columns: 1fr; }
-      .txn-arrow { transform: rotate(90deg); }
-      .flow-steps { flex-direction: column; }
-      .flow-step:not(:last-child)::after { content: '↓'; right: auto; left: 50%; top: auto; bottom: -14px; }
+
+      /* Flow steps — vertical stack */
+      .flow-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        overflow-x: visible;
+      }
+      .flow-step {
+        width: 100%;
+        max-width: 280px;
+        padding-bottom: 36px;
+      }
+      .flow-step:not(:last-child)::after {
+        content: '↓';
+        position: absolute;
+        bottom: 8px;
+        top: auto;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 18px;
+        color: var(--muted);
+      }
+
+      /* Transaction flow — vertical stack */
+      .txn-flow {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .txn-arrow {
+        transform: rotate(90deg);
+        line-height: 1;
+      }
+      .txn-label { margin-top: 0; }
+
+      /* Flow wrap padding */
+      .flow-wrap { padding: 28px 20px; }
+
+      /* Compare table — horizontal scroll */
+      .compare-table { display: block; overflow-x: auto; }
     }
   </style>
 </head>
