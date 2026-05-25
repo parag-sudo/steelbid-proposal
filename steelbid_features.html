@@ -497,6 +497,44 @@ p { font-size: 15px; color: var(--muted); }
   .swatch { min-width:60px; }
   .swatch-color { min-width:60px; height:60px; }
   .brand-name-grid { grid-template-columns:1fr !important; }
+  /* Bizcard content scale-down */
+  .bizcard, .bizcard-back { width:100%; }
+  .bizcard-front { padding:16px 18px; }
+  .bizcard-name { font-size:15px; }
+  .bizcard-title-text { font-size:10px; }
+  .bizcard-contact { font-size:10px; }
+  .bizcard-back-wm { font-size:26px; }
+  .bizcard-back-tag { font-size:10px; letter-spacing:0.12em; }
+  .bizcard-logo-icon { width:22px; height:22px; font-size:11px; }
+  .bizcard-wordmark { font-size:13px; }
+}
+@media (max-width:640px) {
+  /* Tabs → wrap as pills on mobile */
+  .tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    border-bottom: none;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    flex-shrink: 0;
+    background: #f1f5f9;
+    border: 1px solid #dde3ed;
+    border-radius: 20px;
+    border-bottom: 1px solid #dde3ed;
+    margin-bottom: 0;
+    padding: 8px 16px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+  }
+  .tab-btn:hover { background: #e8edf4; }
 }
 @media (max-width:480px) {
   .chapter-row { grid-template-columns:1fr; }
@@ -508,553 +546,12 @@ p { font-size: 15px; color: var(--muted); }
 <body>
 
 <!-- ════════════════════════════════════════
-     SECTION 01 — WEB APPLICATION
+     SECTION 03 — BRAND GUIDELINES
 ════════════════════════════════════════ -->
 <section id="sec01">
 
   <div class="section-hero">
     <div class="watermark">01</div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="label">Section 01 · Web Application</div>
-        <h2>Web Application<br>Feature Specifications</h2>
-        <div class="hero-line"></div>
-        <p>A fully engineered real-time bidding platform built for India's industrial steel market — sub-100ms WebSocket auctions, escrow payments, GST-verified buyers, and enterprise-grade AWS infrastructure.</p>
-        <div class="tech-badges">
-          <span class="badge">React</span>
-          <span class="badge">Node.js</span>
-          <span class="badge">WebSockets</span>
-          <span class="badge">Redis</span>
-          <span class="badge">PostgreSQL</span>
-          <span class="badge">AWS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container tabs-wrap">
-
-    <div class="tabs">
-      <button class="tab-btn active" data-filter="all">All Systems</button>
-      <button class="tab-btn" data-filter="buyer">Buyer Suite</button>
-      <button class="tab-btn" data-filter="seller">Seller Portal</button>
-      <button class="tab-btn" data-filter="admin">Operations &amp; Admin</button>
-      <button class="tab-btn" data-filter="platform">Cloud &amp; Security</button>
-    </div>
-
-    <div class="cards-grid" id="featureCards">
-
-      <div class="feat-card" data-cat="buyer">
-        <div class="card-icon">⚡</div>
-        <span class="card-tag tag-buyer">Buyer Suite</span>
-        <h3 class="card-title">Live Real-Time Bidding Engine</h3>
-        <p class="card-desc">WebSocket-powered auction core engineered for zero-lag competitive bidding on steel lots.</p>
-        <ul class="card-bullets">
-          <li>Sub-100ms bid updates broadcast to all live participants simultaneously</li>
-          <li>₹100 minimum increment enforcement with instant validation</li>
-          <li>3-minute anti-snipe extension triggered on last-second bids</li>
-          <li>Simultaneous multi-lot bidding across parallel auction rooms</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Creates urgency and competitive tension — proven to drive 18–35% higher final hammer prices vs. sealed-bid formats.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="buyer">
-        <div class="card-icon">📱</div>
-        <span class="card-tag tag-buyer">Buyer Suite</span>
-        <h3 class="card-title">Mobile-Responsive Platform</h3>
-        <p class="card-desc">Full-featured auction experience on any device — no app installation required.</p>
-        <ul class="card-bullets">
-          <li>Progressive Web App (PWA) — works on phone browsers instantly</li>
-          <li>Touch-optimised bid controls for fast finger-tap bidding</li>
-          <li>Optimised for 2G/3G connectivity in steel yards and warehouses</li>
-          <li>Consistent experience across Android, iPhone, tablets, and desktop</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Expands buyer reach to field-based steel traders who operate entirely from smartphones — no PC required.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="buyer">
-        <div class="card-icon">🔐</div>
-        <span class="card-tag tag-buyer">Buyer Suite</span>
-        <h3 class="card-title">Secure Razorpay Escrow Integration</h3>
-        <p class="card-desc">3-stage payment protection that safeguards both buyer and seller throughout the transaction lifecycle.</p>
-        <ul class="card-bullets">
-          <li>Stage 1: Refundable registration deposit to unlock bidding access</li>
-          <li>Stage 2: Winner payment held securely in escrow post-auction</li>
-          <li>Stage 3: Seller release triggered only on confirmed dispatch</li>
-          <li>PCI-DSS compliant — no card data stored on SteelBid servers</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Eliminates payment default risk — the #1 barrier to trust in B2B steel marketplace transactions.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="buyer">
-        <div class="card-icon">💬</div>
-        <span class="card-tag tag-buyer">Buyer Suite</span>
-        <h3 class="card-title">Instant Smart WhatsApp Alerts</h3>
-        <p class="card-desc">Automated WhatsApp Business API notifications keeping buyers and sellers engaged at every stage.</p>
-        <ul class="card-bullets">
-          <li>Bulk pre-auction alerts: upcoming lots matching buyer preferences</li>
-          <li>Instant winner notification with payment deadline and amount</li>
-          <li>Dispatch update with tracking details when seller ships</li>
-          <li>Payment deadline reminder 6 hours before expiry</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>WhatsApp has 98% open rate vs. 22% email — critical for time-sensitive auction communications.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="seller">
-        <div class="card-icon">🏭</div>
-        <span class="card-tag tag-seller">Seller Portal</span>
-        <h3 class="card-title">Seller Consignment &amp; Active Auctions</h3>
-        <p class="card-desc">Steel-specific listing system with all the fields manufacturers and traders actually need.</p>
-        <ul class="card-bullets">
-          <li>Steel-specific fields: length, width, thickness, shape, quality grade</li>
-          <li>3–4 photo uploads per lot with compression and CDN delivery</li>
-          <li>Base price and total quantity configuration per consignment</li>
-          <li>Live auction monitoring dashboard — bid count and current price</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Sellers list in minutes with industry-standard spec fields — no back-and-forth with support to create accurate listings.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="seller">
-        <div class="card-icon">⚖️</div>
-        <span class="card-tag tag-seller">Seller Portal</span>
-        <h3 class="card-title">Dispute &amp; Claim Raising Center</h3>
-        <p class="card-desc">Structured post-auction dispute workflow that protects both parties with a full audit trail.</p>
-        <ul class="card-bullets">
-          <li>Post-auction dispute filing with evidence upload (photos, documents)</li>
-          <li>Admin arbitration workflow with defined SLA timelines</li>
-          <li>Outcome tracking — accepted, rejected, or escalated status</li>
-          <li>Full communication log preserved for legal reference</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Formalised dispute resolution builds institutional trust — essential for high-value B2B steel transactions.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="seller">
-        <div class="card-icon">📊</div>
-        <span class="card-tag tag-seller">Seller Portal</span>
-        <h3 class="card-title">Seller Sales Analytics</h3>
-        <p class="card-desc">Data intelligence dashboard that helps sellers price smarter and time auctions better.</p>
-        <ul class="card-bullets">
-          <li>Auction performance: sell-through rate, average realisation</li>
-          <li>Buyer demand heatmap by steel category and region</li>
-          <li>Pricing trends over time vs. market average</li>
-          <li>Best-performing time slots and day-of-week analysis</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Sellers who understand demand patterns consistently achieve 8–22% better realisations per lot.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="admin">
-        <div class="card-icon">🎛️</div>
-        <span class="card-tag tag-admin">Operations &amp; Admin</span>
-        <h3 class="card-title">Operations Command Centre</h3>
-        <p class="card-desc">Full lifecycle auction management from a single dashboard — everything ops teams need in one place.</p>
-        <ul class="card-bullets">
-          <li>Approve, reject, or pause live auctions in real time</li>
-          <li>Set auction start/end timings and configure lot parameters</li>
-          <li>Monitor live bids with admin-level view of all participants</li>
-          <li>Override or cancel bids in exceptional circumstances</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>One operations manager can run 20+ simultaneous auctions — dramatically reducing operational overhead.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="admin">
-        <div class="card-icon">🪪</div>
-        <span class="card-tag tag-admin">Operations &amp; Admin</span>
-        <h3 class="card-title">Advanced GST &amp; KYC Verification</h3>
-        <p class="card-desc">Automated compliance engine ensuring only legitimate, verified businesses participate in auctions.</p>
-        <ul class="card-bullets">
-          <li>GST number validation via government API — real-time check</li>
-          <li>Bank account validation via penny-drop or IFSC lookup</li>
-          <li>Security deposit management with automated eligibility enforcement</li>
-          <li>Buyer blacklist management for defaulters and fraud cases</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Verified-only bidding eliminates ghost bids and payment defaults — a critical credibility differentiator.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="admin">
-        <div class="card-icon">📋</div>
-        <span class="card-tag tag-admin">Operations &amp; Admin</span>
-        <h3 class="card-title">Smart Steel Listing Control Center</h3>
-        <p class="card-desc">Intelligent listing approval workflow with steel-specific validation to maintain marketplace quality.</p>
-        <ul class="card-bullets">
-          <li>Category-based approval workflow with queue management</li>
-          <li>Spec validation — flags incomplete or inconsistent steel parameters</li>
-          <li>Quality grading with standardised grade nomenclature</li>
-          <li>Fraud prevention: duplicate listing detection and reputation scoring</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>High listing quality = higher buyer trust = more registered bidders = better realisations for sellers.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="admin">
-        <div class="card-icon">🔒</div>
-        <span class="card-tag tag-admin">Operations &amp; Admin</span>
-        <h3 class="card-title">Private Reserve Pricing Control Room</h3>
-        <p class="card-desc">Confidential floor price management protecting seller interests without compromising auction integrity.</p>
-        <ul class="card-bullets">
-          <li>Hidden reserve prices — never visible to bidders</li>
-          <li>Floor price enforcement with automatic lot withdrawal if unmet</li>
-          <li>Auto-reject bids below reserve with no system reveal</li>
-          <li>Admin override capability for special negotiated outcomes</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Reserve pricing protects sellers from underselling while keeping the competitive tension of open bidding fully intact.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="admin">
-        <div class="card-icon">🧾</div>
-        <span class="card-tag tag-admin">Operations &amp; Admin</span>
-        <h3 class="card-title">Automated Commissions &amp; Billing</h3>
-        <p class="card-desc">End-to-end financial operations automation — from commission calculation to seller remittance.</p>
-        <ul class="card-bullets">
-          <li>3% commission auto-calculated on every successful hammer price</li>
-          <li>GST-compliant winner invoice generated and emailed automatically</li>
-          <li>Seller remittance tracking with payment status dashboard</li>
-          <li>Monthly billing reconciliation report for finance team</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Zero manual billing work — the system handles the full revenue cycle, enabling lean operations at scale.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="platform">
-        <div class="card-icon">☁️</div>
-        <span class="card-tag tag-platform">Cloud &amp; Security</span>
-        <h3 class="card-title">AWS Enterprise Cloud Architecture</h3>
-        <p class="card-desc">Production-grade AWS infrastructure engineered for lakh-scale concurrency on auction day.</p>
-        <ul class="card-bullets">
-          <li>Auto-scaling EC2/ECS clusters — handles 10x traffic spikes automatically</li>
-          <li>CloudFront CDN for sub-200ms asset delivery across India</li>
-          <li>Application Load Balancer with health checks and failover</li>
-          <li>99.9% uptime SLA with multi-AZ PostgreSQL RDS deployment</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Infrastructure that scales with business growth — no emergency engineering when 5,000 bidders log in simultaneously.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="platform">
-        <div class="card-icon">🛡️</div>
-        <span class="card-tag tag-platform">Cloud &amp; Security</span>
-        <h3 class="card-title">OWASP Grade Enterprise Security</h3>
-        <p class="card-desc">Multi-layer security architecture covering application, network, and payment layers.</p>
-        <ul class="card-bullets">
-          <li>HTTPS / TLS 1.3 encryption for all data in transit</li>
-          <li>AES-256 encryption for sensitive data at rest (KYC, bank details)</li>
-          <li>Rate limiting and DDoS protection via AWS WAF + Shield</li>
-          <li>PCI-compliant payment flow — no card data touches SteelBid servers</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>Enterprise security posture is a key trust signal for large industrial buyers handling crore-value transactions.</p>
-        </div>
-      </div>
-
-      <div class="feat-card" data-cat="platform">
-        <div class="card-icon">📦</div>
-        <span class="card-tag tag-platform">Cloud &amp; Security</span>
-        <h3 class="card-title">Asset Handover &amp; Documentation</h3>
-        <p class="card-desc">Complete knowledge transfer ensuring full ownership and maintainability post-launch.</p>
-        <ul class="card-bullets">
-          <li>Full source code handover via GitHub repository with history</li>
-          <li>Complete API blueprint documentation (Swagger / Postman)</li>
-          <li>AWS infrastructure-as-code (Terraform/CDK) configuration guide</li>
-          <li>3-month post-launch warranty covering bugs and critical fixes</li>
-        </ul>
-        <div class="benefit-box">
-          <div class="benefit-label">Business Advantage</div>
-          <p>You own everything — full independence to maintain, extend, or hand off to any development team.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Auction Flow -->
-    <div class="flow-section">
-      <h3 class="flow-title">How a Typical Auction Works</h3>
-      <div class="flow-grid">
-        <div class="flow-step">
-          <div class="flow-num">1</div>
-          <h5>Seller Lists Lot</h5>
-          <p>Steel specs, photos, base price, and reserve submitted for admin approval</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">2</div>
-          <h5>Buyer Registers</h5>
-          <p>GST + KYC verified, security deposit paid, bidding access unlocked</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">3</div>
-          <h5>WhatsApp Alerts</h5>
-          <p>Bulk pre-auction notification sent to all eligible registered buyers</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">4</div>
-          <h5>Live Auction</h5>
-          <p>Real-time WebSocket bidding — sub-100ms updates, anti-snipe active</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">5</div>
-          <h5>Winner Pays</h5>
-          <p>Razorpay escrow holds payment — invoice auto-generated and sent</p>
-        </div>
-        <div class="flow-step">
-          <div class="flow-num">6</div>
-          <h5>Dispatch &amp; Release</h5>
-          <p>Seller ships, dispatch confirmed, escrow released and commission deducted</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     SECTION 02 — MARKETING WEBSITE
-════════════════════════════════════════ -->
-<section id="sec02">
-
-  <div class="section-hero">
-    <div class="watermark">02</div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="label">Section 02 · Marketing Website</div>
-        <h2>Marketing Website<br>Deliverables</h2>
-        <div class="hero-line"></div>
-        <p>A 28-page Nuxt.js + WordPress marketing website engineered for SEO dominance, high-conversion lead capture, and frictionless buyer and seller onboarding.</p>
-        <div class="tech-badges">
-          <span class="badge">Nuxt.js</span>
-          <span class="badge">WordPress CMS</span>
-          <span class="badge">SEO Optimised</span>
-          <span class="badge">Mobile First</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container" style="padding-top:60px;">
-
-    <div class="sitemap-card">
-      <div class="sitemap-card-title">Website Sitemap · 28 Pages</div>
-      <div class="sitemap-card-sub">Based on Mjunction, SteelEasy &amp; Steelmart competitor research — orange tags = custom-built pages, grey = standard pages</div>
-      <div class="sitemap-groups">
-
-        <div class="sitemap-group">
-          <h5>Core Pages (5)</h5>
-          <div class="sitemap-pages">
-            <span class="page-tag custom">Home</span>
-            <span class="page-tag">About Us</span>
-            <span class="page-tag custom">How It Works</span>
-            <span class="page-tag custom">Why SteelBid</span>
-            <span class="page-tag">Contact Us</span>
-          </div>
-        </div>
-
-        <div class="sitemap-group">
-          <h5>Auction Pages (4)</h5>
-          <div class="sitemap-pages">
-            <span class="page-tag custom">Live Auctions</span>
-            <span class="page-tag custom">Upcoming Auctions</span>
-            <span class="page-tag custom">Past Auction Results</span>
-            <span class="page-tag">Product Categories</span>
-          </div>
-        </div>
-
-        <div class="sitemap-group">
-          <h5>For Buyers (4)</h5>
-          <div class="sitemap-pages">
-            <span class="page-tag custom">Buyer Registration</span>
-            <span class="page-tag custom">How to Bid</span>
-            <span class="page-tag">Buyer FAQs</span>
-            <span class="page-tag custom">KYC &amp; Verification</span>
-          </div>
-        </div>
-
-        <div class="sitemap-group">
-          <h5>For Sellers (4)</h5>
-          <div class="sitemap-pages">
-            <span class="page-tag custom">Seller Registration</span>
-            <span class="page-tag custom">How to List Steel</span>
-            <span class="page-tag">Seller FAQs</span>
-            <span class="page-tag custom">Success Stories</span>
-          </div>
-        </div>
-
-        <div class="sitemap-group">
-          <h5>Trust &amp; Compliance (4)</h5>
-          <div class="sitemap-pages">
-            <span class="page-tag custom">Payment &amp; Escrow Policy</span>
-            <span class="page-tag custom">Dispute Resolution</span>
-            <span class="page-tag">KYC Policy</span>
-            <span class="page-tag">Testimonials</span>
-          </div>
-        </div>
-
-        <div class="sitemap-group">
-          <h5>Resources (3)</h5>
-          <div class="sitemap-pages">
-            <span class="page-tag custom">Blog / Steel Market News</span>
-            <span class="page-tag">Industry Updates</span>
-            <span class="page-tag">Media &amp; Press</span>
-          </div>
-        </div>
-
-        <div class="sitemap-group">
-          <h5>Utility Pages (4)</h5>
-          <div class="sitemap-pages">
-            <span class="page-tag">Privacy Policy</span>
-            <span class="page-tag">Terms &amp; Conditions</span>
-            <span class="page-tag">Refund Policy</span>
-            <span class="page-tag custom">404 Error Page</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="web-cards-grid">
-
-      <div class="web-card">
-        <div class="web-card-icon">⚡</div>
-        <div class="web-card-body">
-          <h4>Nuxt.js SSR Frontend</h4>
-          <p>Server-side rendering for lightning-fast first paint and full SEO indexability. Smooth page transitions via Vue Router give an app-like feel without sacrificing search ranking. Production bundle optimisation and code-splitting included.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">📝</div>
-        <div class="web-card-body">
-          <h4>WordPress CMS Integration</h4>
-          <p>Headless WordPress as the content backend — your marketing team manages all pages, blogs, and FAQs without touching code. Visual editing, scheduled publishing, and media library all included.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">📐</div>
-        <div class="web-card-body">
-          <h4>Mobile-First Responsive Design</h4>
-          <p>Every page designed at 375px first, then scaled up. Steel traders operate on phones — the website is optimised for thumb-tap navigation, fast load on 4G, and readable typography at all sizes.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">🔍</div>
-        <div class="web-card-body">
-          <h4>SEO Optimisation</h4>
-          <p>Technical SEO baked into every page: meta title/description templates, Open Graph tags, JSON-LD schema markup for auctions, auto-generated XML sitemap, canonical tags, and robots.txt configuration.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">💬</div>
-        <div class="web-card-body">
-          <h4>WhatsApp Chat Widget</h4>
-          <p>One-tap WhatsApp contact with pre-filled message templates. High-converting for Indian B2B where WhatsApp is the primary business communication channel. Supports multiple team member routing.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">📈</div>
-        <div class="web-card-body">
-          <h4>Google Analytics &amp; Search Console</h4>
-          <p>GA4 event tracking with custom conversion goals (registrations, bid clicks, form fills). Search Console integration for keyword performance monitoring and crawl error alerts.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">📰</div>
-        <div class="web-card-body">
-          <h4>Blog &amp; News Module</h4>
-          <p>WordPress-powered content hub for steel market news, price updates, and industry analysis. Category taxonomy, author profiles, related posts, and social sharing built in. SEO-optimised article templates.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">📋</div>
-        <div class="web-card-body">
-          <h4>Lead Capture &amp; Registration Forms</h4>
-          <p>Multi-step buyer and seller registration forms with inline validation. Auto email confirmation on submission. CRM-ready — all leads exported to CSV or connected to any CRM via webhook.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">🏷️</div>
-        <div class="web-card-body">
-          <h4>Live Auction Teaser Widget</h4>
-          <p>Homepage widget powered by the web app's live API — shows upcoming and active auctions with countdown timers, current prices, and lot thumbnails. Updates in real time without page refresh.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">🍪</div>
-        <div class="web-card-body">
-          <h4>Cookie Consent &amp; Compliance</h4>
-          <p>GDPR-lite cookie consent banner with granular preference controls (analytics, marketing, functional). Auto-blocks tracking scripts until consent is given. Privacy Policy and Terms pages linked.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">🚀</div>
-        <div class="web-card-body">
-          <h4>Performance Optimisation</h4>
-          <p>Target PageSpeed score 90+ on mobile. Lazy-loaded images with WebP format, Brotli compression, CDN asset delivery, critical CSS inlining, and deferred third-party scripts for maximum Core Web Vitals.</p>
-        </div>
-      </div>
-
-      <div class="web-card">
-        <div class="web-card-icon">🔗</div>
-        <div class="web-card-body">
-          <h4>Social Media &amp; Newsletter Integration</h4>
-          <p>LinkedIn and Twitter share buttons on all content pages. Mailchimp newsletter signup widget with double opt-in flow. Social feed embed widget for Instagram or LinkedIn company page activity.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ════════════════════════════════════════
-     SECTION 03 — BRAND GUIDELINES
-════════════════════════════════════════ -->
-<section id="sec03">
-
-  <div class="section-hero">
-    <div class="watermark">03</div>
     <div class="container">
       <div class="hero-content">
         <div class="label">Section 03 · Brand Identity</div>
@@ -1675,6 +1172,547 @@ p { font-size: 15px; color: var(--muted); }
 
 
 <!-- ════════════════════════════════════════
+     SECTION 01 — WEB APPLICATION
+════════════════════════════════════════ -->
+<section id="sec02">
+
+  <div class="section-hero">
+    <div class="watermark">02</div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="label">Section 02 · Web Application</div>
+        <h2>Web Application<br>Feature Specifications</h2>
+        <div class="hero-line"></div>
+        <p>A fully engineered real-time bidding platform built for India's industrial steel market — sub-100ms WebSocket auctions, escrow payments, GST-verified buyers, and enterprise-grade AWS infrastructure.</p>
+        <div class="tech-badges">
+          <span class="badge">React</span>
+          <span class="badge">Node.js</span>
+          <span class="badge">WebSockets</span>
+          <span class="badge">Redis</span>
+          <span class="badge">PostgreSQL</span>
+          <span class="badge">AWS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container tabs-wrap">
+
+    <div class="tabs">
+      <button class="tab-btn active" data-filter="all">All Systems</button>
+      <button class="tab-btn" data-filter="buyer">Buyer Suite</button>
+      <button class="tab-btn" data-filter="seller">Seller Portal</button>
+      <button class="tab-btn" data-filter="admin">Operations &amp; Admin</button>
+      <button class="tab-btn" data-filter="platform">Cloud &amp; Security</button>
+    </div>
+
+    <div class="cards-grid" id="featureCards">
+
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">⚡</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Live Real-Time Bidding Engine</h3>
+        <p class="card-desc">WebSocket-powered auction core engineered for zero-lag competitive bidding on steel lots.</p>
+        <ul class="card-bullets">
+          <li>Sub-100ms bid updates broadcast to all live participants simultaneously</li>
+          <li>₹100 minimum increment enforcement with instant validation</li>
+          <li>3-minute anti-snipe extension triggered on last-second bids</li>
+          <li>Simultaneous multi-lot bidding across parallel auction rooms</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Creates urgency and competitive tension — proven to drive 18–35% higher final hammer prices vs. sealed-bid formats.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">📱</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Mobile-Responsive Platform</h3>
+        <p class="card-desc">Full-featured auction experience on any device — no app installation required.</p>
+        <ul class="card-bullets">
+          <li>Progressive Web App (PWA) — works on phone browsers instantly</li>
+          <li>Touch-optimised bid controls for fast finger-tap bidding</li>
+          <li>Optimised for 2G/3G connectivity in steel yards and warehouses</li>
+          <li>Consistent experience across Android, iPhone, tablets, and desktop</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Expands buyer reach to field-based steel traders who operate entirely from smartphones — no PC required.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">🔐</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Secure Razorpay Escrow Integration</h3>
+        <p class="card-desc">3-stage payment protection that safeguards both buyer and seller throughout the transaction lifecycle.</p>
+        <ul class="card-bullets">
+          <li>Stage 1: Refundable registration deposit to unlock bidding access</li>
+          <li>Stage 2: Winner payment held securely in escrow post-auction</li>
+          <li>Stage 3: Seller release triggered only on confirmed dispatch</li>
+          <li>PCI-DSS compliant — no card data stored on SteelBid servers</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Eliminates payment default risk — the #1 barrier to trust in B2B steel marketplace transactions.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">💬</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Instant Smart WhatsApp Alerts</h3>
+        <p class="card-desc">Automated WhatsApp Business API notifications keeping buyers and sellers engaged at every stage.</p>
+        <ul class="card-bullets">
+          <li>Bulk pre-auction alerts: upcoming lots matching buyer preferences</li>
+          <li>Instant winner notification with payment deadline and amount</li>
+          <li>Dispatch update with tracking details when seller ships</li>
+          <li>Payment deadline reminder 6 hours before expiry</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>WhatsApp has 98% open rate vs. 22% email — critical for time-sensitive auction communications.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="seller">
+        <div class="card-icon">🏭</div>
+        <span class="card-tag tag-seller">Seller Portal</span>
+        <h3 class="card-title">Seller Consignment &amp; Active Auctions</h3>
+        <p class="card-desc">Steel-specific listing system with all the fields manufacturers and traders actually need.</p>
+        <ul class="card-bullets">
+          <li>Steel-specific fields: length, width, thickness, shape, quality grade</li>
+          <li>3–4 photo uploads per lot with compression and CDN delivery</li>
+          <li>Base price and total quantity configuration per consignment</li>
+          <li>Live auction monitoring dashboard — bid count and current price</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Sellers list in minutes with industry-standard spec fields — no back-and-forth with support to create accurate listings.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="seller">
+        <div class="card-icon">⚖️</div>
+        <span class="card-tag tag-seller">Seller Portal</span>
+        <h3 class="card-title">Dispute &amp; Claim Raising Center</h3>
+        <p class="card-desc">Structured post-auction dispute workflow that protects both parties with a full audit trail.</p>
+        <ul class="card-bullets">
+          <li>Post-auction dispute filing with evidence upload (photos, documents)</li>
+          <li>Admin arbitration workflow with defined SLA timelines</li>
+          <li>Outcome tracking — accepted, rejected, or escalated status</li>
+          <li>Full communication log preserved for legal reference</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Formalised dispute resolution builds institutional trust — essential for high-value B2B steel transactions.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="seller">
+        <div class="card-icon">📊</div>
+        <span class="card-tag tag-seller">Seller Portal</span>
+        <h3 class="card-title">Seller Sales Analytics</h3>
+        <p class="card-desc">Data intelligence dashboard that helps sellers price smarter and time auctions better.</p>
+        <ul class="card-bullets">
+          <li>Auction performance: sell-through rate, average realisation</li>
+          <li>Buyer demand heatmap by steel category and region</li>
+          <li>Pricing trends over time vs. market average</li>
+          <li>Best-performing time slots and day-of-week analysis</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Sellers who understand demand patterns consistently achieve 8–22% better realisations per lot.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🎛️</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Operations Command Centre</h3>
+        <p class="card-desc">Full lifecycle auction management from a single dashboard — everything ops teams need in one place.</p>
+        <ul class="card-bullets">
+          <li>Approve, reject, or pause live auctions in real time</li>
+          <li>Set auction start/end timings and configure lot parameters</li>
+          <li>Monitor live bids with admin-level view of all participants</li>
+          <li>Override or cancel bids in exceptional circumstances</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>One operations manager can run 20+ simultaneous auctions — dramatically reducing operational overhead.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🪪</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Advanced GST &amp; KYC Verification</h3>
+        <p class="card-desc">Automated compliance engine ensuring only legitimate, verified businesses participate in auctions.</p>
+        <ul class="card-bullets">
+          <li>GST number validation via government API — real-time check</li>
+          <li>Bank account validation via penny-drop or IFSC lookup</li>
+          <li>Security deposit management with automated eligibility enforcement</li>
+          <li>Buyer blacklist management for defaulters and fraud cases</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Verified-only bidding eliminates ghost bids and payment defaults — a critical credibility differentiator.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">📋</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Smart Steel Listing Control Center</h3>
+        <p class="card-desc">Intelligent listing approval workflow with steel-specific validation to maintain marketplace quality.</p>
+        <ul class="card-bullets">
+          <li>Category-based approval workflow with queue management</li>
+          <li>Spec validation — flags incomplete or inconsistent steel parameters</li>
+          <li>Quality grading with standardised grade nomenclature</li>
+          <li>Fraud prevention: duplicate listing detection and reputation scoring</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>High listing quality = higher buyer trust = more registered bidders = better realisations for sellers.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🔒</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Private Reserve Pricing Control Room</h3>
+        <p class="card-desc">Confidential floor price management protecting seller interests without compromising auction integrity.</p>
+        <ul class="card-bullets">
+          <li>Hidden reserve prices — never visible to bidders</li>
+          <li>Floor price enforcement with automatic lot withdrawal if unmet</li>
+          <li>Auto-reject bids below reserve with no system reveal</li>
+          <li>Admin override capability for special negotiated outcomes</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Reserve pricing protects sellers from underselling while keeping the competitive tension of open bidding fully intact.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🧾</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Automated Commissions &amp; Billing</h3>
+        <p class="card-desc">End-to-end financial operations automation — from commission calculation to seller remittance.</p>
+        <ul class="card-bullets">
+          <li>3% commission auto-calculated on every successful hammer price</li>
+          <li>GST-compliant winner invoice generated and emailed automatically</li>
+          <li>Seller remittance tracking with payment status dashboard</li>
+          <li>Monthly billing reconciliation report for finance team</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Zero manual billing work — the system handles the full revenue cycle, enabling lean operations at scale.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="platform">
+        <div class="card-icon">☁️</div>
+        <span class="card-tag tag-platform">Cloud &amp; Security</span>
+        <h3 class="card-title">AWS Enterprise Cloud Architecture</h3>
+        <p class="card-desc">Production-grade AWS infrastructure engineered for lakh-scale concurrency on auction day.</p>
+        <ul class="card-bullets">
+          <li>Auto-scaling EC2/ECS clusters — handles 10x traffic spikes automatically</li>
+          <li>CloudFront CDN for sub-200ms asset delivery across India</li>
+          <li>Application Load Balancer with health checks and failover</li>
+          <li>99.9% uptime SLA with multi-AZ PostgreSQL RDS deployment</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Infrastructure that scales with business growth — no emergency engineering when 5,000 bidders log in simultaneously.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="platform">
+        <div class="card-icon">🛡️</div>
+        <span class="card-tag tag-platform">Cloud &amp; Security</span>
+        <h3 class="card-title">OWASP Grade Enterprise Security</h3>
+        <p class="card-desc">Multi-layer security architecture covering application, network, and payment layers.</p>
+        <ul class="card-bullets">
+          <li>HTTPS / TLS 1.3 encryption for all data in transit</li>
+          <li>AES-256 encryption for sensitive data at rest (KYC, bank details)</li>
+          <li>Rate limiting and DDoS protection via AWS WAF + Shield</li>
+          <li>PCI-compliant payment flow — no card data touches SteelBid servers</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>Enterprise security posture is a key trust signal for large industrial buyers handling crore-value transactions.</p>
+        </div>
+      </div>
+
+      <div class="feat-card" data-cat="platform">
+        <div class="card-icon">📦</div>
+        <span class="card-tag tag-platform">Cloud &amp; Security</span>
+        <h3 class="card-title">Asset Handover &amp; Documentation</h3>
+        <p class="card-desc">Complete knowledge transfer ensuring full ownership and maintainability post-launch.</p>
+        <ul class="card-bullets">
+          <li>Full source code handover via GitHub repository with history</li>
+          <li>Complete API blueprint documentation (Swagger / Postman)</li>
+          <li>AWS infrastructure-as-code (Terraform/CDK) configuration guide</li>
+          <li>3-month post-launch warranty covering bugs and critical fixes</li>
+        </ul>
+        <div class="benefit-box">
+          <div class="benefit-label">Business Advantage</div>
+          <p>You own everything — full independence to maintain, extend, or hand off to any development team.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Auction Flow -->
+    <div class="flow-section">
+      <h3 class="flow-title">How a Typical Auction Works</h3>
+      <div class="flow-grid">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h5>Seller Lists Lot</h5>
+          <p>Steel specs, photos, base price, and reserve submitted for admin approval</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h5>Buyer Registers</h5>
+          <p>GST + KYC verified, security deposit paid, bidding access unlocked</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h5>WhatsApp Alerts</h5>
+          <p>Bulk pre-auction notification sent to all eligible registered buyers</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <h5>Live Auction</h5>
+          <p>Real-time WebSocket bidding — sub-100ms updates, anti-snipe active</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <h5>Winner Pays</h5>
+          <p>Razorpay escrow holds payment — invoice auto-generated and sent</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">6</div>
+          <h5>Dispatch &amp; Release</h5>
+          <p>Seller ships, dispatch confirmed, escrow released and commission deducted</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 02 — MARKETING WEBSITE
+════════════════════════════════════════ -->
+<section id="sec03">
+
+  <div class="section-hero">
+    <div class="watermark">03</div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="label">Section 03 · Marketing Website</div>
+        <h2>Marketing Website<br>Deliverables</h2>
+        <div class="hero-line"></div>
+        <p>A 28-page Nuxt.js + WordPress marketing website engineered for SEO dominance, high-conversion lead capture, and frictionless buyer and seller onboarding.</p>
+        <div class="tech-badges">
+          <span class="badge">Nuxt.js</span>
+          <span class="badge">WordPress CMS</span>
+          <span class="badge">SEO Optimised</span>
+          <span class="badge">Mobile First</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:60px;">
+
+    <div class="sitemap-card">
+      <div class="sitemap-card-title">Website Sitemap · 28 Pages</div>
+      <div class="sitemap-card-sub">Based on Mjunction, SteelEasy &amp; Steelmart competitor research — orange tags = custom-built pages, grey = standard pages</div>
+      <div class="sitemap-groups">
+
+        <div class="sitemap-group">
+          <h5>Core Pages (5)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Home</span>
+            <span class="page-tag">About Us</span>
+            <span class="page-tag custom">How It Works</span>
+            <span class="page-tag custom">Why SteelBid</span>
+            <span class="page-tag">Contact Us</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Auction Pages (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Live Auctions</span>
+            <span class="page-tag custom">Upcoming Auctions</span>
+            <span class="page-tag custom">Past Auction Results</span>
+            <span class="page-tag">Product Categories</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>For Buyers (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Buyer Registration</span>
+            <span class="page-tag custom">How to Bid</span>
+            <span class="page-tag">Buyer FAQs</span>
+            <span class="page-tag custom">KYC &amp; Verification</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>For Sellers (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Seller Registration</span>
+            <span class="page-tag custom">How to List Steel</span>
+            <span class="page-tag">Seller FAQs</span>
+            <span class="page-tag custom">Success Stories</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Trust &amp; Compliance (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Payment &amp; Escrow Policy</span>
+            <span class="page-tag custom">Dispute Resolution</span>
+            <span class="page-tag">KYC Policy</span>
+            <span class="page-tag">Testimonials</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Resources (3)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Blog / Steel Market News</span>
+            <span class="page-tag">Industry Updates</span>
+            <span class="page-tag">Media &amp; Press</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Utility Pages (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag">Privacy Policy</span>
+            <span class="page-tag">Terms &amp; Conditions</span>
+            <span class="page-tag">Refund Policy</span>
+            <span class="page-tag custom">404 Error Page</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="web-cards-grid">
+
+      <div class="web-card">
+        <div class="web-card-icon">⚡</div>
+        <div class="web-card-body">
+          <h4>Nuxt.js SSR Frontend</h4>
+          <p>Server-side rendering for lightning-fast first paint and full SEO indexability. Smooth page transitions via Vue Router give an app-like feel without sacrificing search ranking. Production bundle optimisation and code-splitting included.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📝</div>
+        <div class="web-card-body">
+          <h4>WordPress CMS Integration</h4>
+          <p>Headless WordPress as the content backend — your marketing team manages all pages, blogs, and FAQs without touching code. Visual editing, scheduled publishing, and media library all included.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📐</div>
+        <div class="web-card-body">
+          <h4>Mobile-First Responsive Design</h4>
+          <p>Every page designed at 375px first, then scaled up. Steel traders operate on phones — the website is optimised for thumb-tap navigation, fast load on 4G, and readable typography at all sizes.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🔍</div>
+        <div class="web-card-body">
+          <h4>SEO Optimisation</h4>
+          <p>Technical SEO baked into every page: meta title/description templates, Open Graph tags, JSON-LD schema markup for auctions, auto-generated XML sitemap, canonical tags, and robots.txt configuration.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">💬</div>
+        <div class="web-card-body">
+          <h4>WhatsApp Chat Widget</h4>
+          <p>One-tap WhatsApp contact with pre-filled message templates. High-converting for Indian B2B where WhatsApp is the primary business communication channel. Supports multiple team member routing.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📈</div>
+        <div class="web-card-body">
+          <h4>Google Analytics &amp; Search Console</h4>
+          <p>GA4 event tracking with custom conversion goals (registrations, bid clicks, form fills). Search Console integration for keyword performance monitoring and crawl error alerts.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📰</div>
+        <div class="web-card-body">
+          <h4>Blog &amp; News Module</h4>
+          <p>WordPress-powered content hub for steel market news, price updates, and industry analysis. Category taxonomy, author profiles, related posts, and social sharing built in. SEO-optimised article templates.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📋</div>
+        <div class="web-card-body">
+          <h4>Lead Capture &amp; Registration Forms</h4>
+          <p>Multi-step buyer and seller registration forms with inline validation. Auto email confirmation on submission. CRM-ready — all leads exported to CSV or connected to any CRM via webhook.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🏷️</div>
+        <div class="web-card-body">
+          <h4>Live Auction Teaser Widget</h4>
+          <p>Homepage widget powered by the web app's live API — shows upcoming and active auctions with countdown timers, current prices, and lot thumbnails. Updates in real time without page refresh.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🍪</div>
+        <div class="web-card-body">
+          <h4>Cookie Consent &amp; Compliance</h4>
+          <p>GDPR-lite cookie consent banner with granular preference controls (analytics, marketing, functional). Auto-blocks tracking scripts until consent is given. Privacy Policy and Terms pages linked.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🚀</div>
+        <div class="web-card-body">
+          <h4>Performance Optimisation</h4>
+          <p>Target PageSpeed score 90+ on mobile. Lazy-loaded images with WebP format, Brotli compression, CDN asset delivery, critical CSS inlining, and deferred third-party scripts for maximum Core Web Vitals.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🔗</div>
+        <div class="web-card-body">
+          <h4>Social Media &amp; Newsletter Integration</h4>
+          <p>LinkedIn and Twitter share buttons on all content pages. Mailchimp newsletter signup widget with double opt-in flow. Social feed embed widget for Instagram or LinkedIn company page activity.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
 <footer class="site-footer">
@@ -1683,7 +1721,7 @@ p { font-size: 15px; color: var(--muted); }
       <div class="footer-brand">
         <div class="footer-logo">
           <div class="footer-logo-icon">S</div>
-          <div class="footer-wordmark">Steel<span class="bid">Bid</span></div>
+          <div class="footer-wordmark"><span style="color:#ffffff;">Steel</span><span style="color:#e07b2a;">Bid</span></div>
         </div>
         <p class="footer-desc">Premium Deliverables Specification — prepared by Think To Share. This document outlines every feature, page, and brand asset included in the SteelBid engagement.</p>
       </div>
