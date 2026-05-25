@@ -1,916 +1,1755 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SteelBid — World-Class Feature Specifications</title>
-  
-  <!-- Modern Premium Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --navy:       #0a192f;
-      --navy-light: #172a45;
-      --steel:      #1b3a5c;
-      --mid-blue:   #2c5f8a;
-      --accent:     #e07b2a;
-      --accent-rgb: 224, 123, 42;
-      --gold:       #f5a623;
-      --light-bg:   #f8fafc;
-      --card-bg:    #ffffff;
-      --text-main:  #1e293b;
-      --text-muted: #64748b;
-      --green:      #10b981;
-      --border:     #e2e8f0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SteelBid — Premium Deliverables Specification</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg:      #f4f7fb;
+  --card:    #ffffff;
+  --card2:   #eef2f7;
+  --accent:  #e07b2a;
+  --gold:    #d97706;
+  --text:    #0f172a;
+  --muted:   #64748b;
+  --border:  #dde3ed;
+  --border2: rgba(0,0,0,0.06);
+  --navy:    #0d1b2a;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5 { font-family: 'Outfit', sans-serif; line-height: 1.15; }
+.label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+}
+p { font-size: 15px; color: var(--muted); }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* ── SECTION HERO ── */
+.section-hero {
+  position: relative; min-height: 420px;
+  display: flex; align-items: center;
+  overflow: hidden; padding: 80px 0;
+  background: var(--navy);
+}
+.section-hero .watermark {
+  position: absolute;
+  font-family: 'Outfit', sans-serif; font-weight: 900;
+  font-size: clamp(200px, 25vw, 340px);
+  color: rgba(255,255,255,0.04);
+  right: -20px; top: 50%; transform: translateY(-50%);
+  line-height: 1; pointer-events: none; user-select: none; letter-spacing: -0.05em;
+}
+.section-hero .hero-content { position: relative; z-index: 2; }
+.section-hero h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(34px, 4.5vw, 60px); font-weight: 900;
+  color: #ffffff; margin-bottom: 16px; line-height: 1.05;
+}
+.section-hero p { font-size: 17px; color: rgba(255,255,255,0.55); max-width: 600px; }
+.section-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(224,123,42,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(224,123,42,0.04) 1px, transparent 1px);
+  background-size: 60px 60px; pointer-events: none;
+}
+.hero-line {
+  width: 70px; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  margin: 20px 0; border-radius: 2px;
+}
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--light-bg);
-      color: var(--text-main);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+/* ── TECH BADGES ── */
+.tech-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.badge {
+  background: rgba(224,123,42,0.1); border: 1px solid var(--border);
+  color: var(--accent); font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
+  padding: 6px 14px; border-radius: 4px; text-transform: uppercase;
+}
 
-    /* ─── PREMIUM HEADER ─── */
-    header {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 60%, var(--mid-blue) 100%);
-      color: #ffffff;
-      padding: 80px 20px 100px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 4px solid var(--accent);
-    }
+/* ── TABS ── */
+.tabs-wrap { padding: 50px 0 10px; background: var(--bg); }
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  border-bottom: 2px solid var(--border); padding-bottom: 0; margin-bottom: 48px;
+}
+.tab-btn {
+  background: none; border: none; color: #64748b;
+  font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 12px 22px; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover { color: #0f172a; }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-    }
+/* ── FEATURE CARDS ── */
+.cards-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; padding-bottom: 80px;
+}
+.feat-card {
+  background: #ffffff; border: 1px solid var(--border); border-radius: 12px;
+  padding: 36px; min-height: 280px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  position: relative; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.feat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--gold)); opacity: 0;
+  transition: opacity 0.25s;
+}
+.feat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(224,123,42,0.2);
+  border-color: rgba(224,123,42,0.4);
+}
+.feat-card:hover::before { opacity: 1; }
+.card-icon { font-size: 36px; line-height: 1; }
+.card-tag {
+  display: inline-block; font-family: 'Outfit', sans-serif;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 3px; margin-bottom: 2px;
+}
+.tag-buyer   { background: rgba(224,123,42,0.12); color: var(--accent); }
+.tag-seller  { background: rgba(245,166,35,0.12); color: var(--gold); }
+.tag-admin   { background: rgba(96,165,250,0.12); color: #60a5fa; }
+.tag-platform{ background: rgba(52,211,153,0.12); color: #34d399; }
+.card-title {
+  font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 800;
+  color: #0f172a; line-height: 1.25;
+}
+.card-desc { font-size: 14px; color: #64748b; line-height: 1.65; flex: 0; }
+.card-bullets {
+  list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1;
+}
+.card-bullets li {
+  font-size: 13px; color: #475569; padding-left: 18px;
+  position: relative; line-height: 1.5;
+}
+.card-bullets li::before {
+  content: '▸'; position: absolute; left: 0;
+  color: var(--accent); font-size: 11px; top: 1px;
+}
+.benefit-box {
+  background: #fff8f2; border: 1px solid rgba(224,123,42,0.25);
+  border-radius: 8px; padding: 14px 16px; margin-top: auto;
+}
+.benefit-box p { font-size: 12.5px; color: #92400e; line-height: 1.55; font-weight: 500; }
+.benefit-label {
+  font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 800;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px;
+}
 
-    .header-content {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
+/* ── FLOW STEPS ── */
+.flow-section { padding: 60px 0 80px; border-top: 1px solid var(--border); background: var(--bg); }
+.flow-title {
+  font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800;
+  color: #0f172a; margin-bottom: 40px; text-align: center;
+}
+.flow-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 16px; position: relative;
+}
+.flow-grid::before {
+  content: ''; position: absolute; top: 36px;
+  left: calc(100%/12); right: calc(100%/12); height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--gold), var(--accent), transparent);
+  opacity: 0.4;
+}
+.flow-step { text-align: center; position: relative; z-index: 1; }
+.flow-num {
+  width: 72px; height: 72px; background: #ffffff;
+  border: 2px solid var(--accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+  font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 900; color: var(--accent);
+  box-shadow: 0 4px 16px rgba(224,123,42,0.15);
+}
+.flow-step h5 { font-family:'Outfit',sans-serif; font-size:13px; font-weight:700; color:#0f172a; margin-bottom:6px; }
+.flow-step p { font-size: 12px; color: #64748b; line-height: 1.5; }
 
-    .badge {
-      display: inline-block;
-      background: rgba(224, 123, 42, 0.15);
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      font-family: 'Outfit', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 6px 18px;
-      border-radius: 50px;
-      margin-bottom: 24px;
-    }
+/* ── SECTION 02 ── */
+#sec02 { background: var(--bg); }
+#sec02 .section-hero { background: #0d1f38; }
+#sec02 .section-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(224,123,42,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
-    }
+.sitemap-card {
+  background: #ffffff; border: 1px solid var(--border);
+  border-radius: 12px; padding: 44px; margin: 0 0 60px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.sitemap-card-title { font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; color:#0f172a; margin-bottom:6px; }
+.sitemap-card-sub { font-size:13px; color:#64748b; margin-bottom:32px; }
+.sitemap-groups { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.sitemap-group h5 {
+  font-family:'Outfit',sans-serif; font-size:12px; font-weight:800;
+  letter-spacing:0.15em; text-transform:uppercase; color:var(--accent);
+  margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--border);
+}
+.sitemap-pages { display: flex; flex-direction: column; gap: 7px; }
+.page-tag {
+  display: inline-block; font-size: 12px; font-weight: 500;
+  padding: 4px 10px; border-radius: 4px;
+  background: #f1f5f9; color: #475569; width: fit-content;
+  border: 1px solid #dde3ed;
+}
+.page-tag.custom {
+  background: #fff3e8; color: #c2621e;
+  border-color: rgba(224,123,42,0.3);
+}
 
-    h1 span {
-      background: linear-gradient(135deg, var(--gold) 0%, #fff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.web-cards-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 24px; padding-bottom: 80px;
+}
+.web-card {
+  background: #ffffff; border: 1px solid var(--border); border-radius: 12px;
+  padding: 36px; display: flex; gap: 24px; align-items: flex-start;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.web-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(224,123,42,0.2);
+  border-color: rgba(224,123,42,0.4);
+}
+.web-card-icon {
+  font-size: 28px; flex-shrink: 0; width: 64px; height: 64px;
+  background: #fff3e8; border: 1px solid rgba(224,123,42,0.2); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.web-card-body { flex: 1; }
+.web-card-body h4 { font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; color:#0f172a; margin-bottom:8px; }
+.web-card-body p { font-size:14px; color:#64748b; line-height:1.6; }
 
-    .subtitle {
-      font-size: clamp(16px, 2vw, 18px);
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.75);
-      max-width: 620px;
-      margin: 0 auto;
-    }
+/* ── SECTION 03 ── */
+#sec03 { background: var(--bg); }
+#sec03 .section-hero { background: #1a0e02; }
+#sec03 .section-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 70% at 50% 50%, rgba(224,123,42,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-    /* ─── TABS NAV ─── */
-    .tabs-container {
-      max-width: 900px;
-      margin: -35px auto 40px;
-      position: relative;
-      z-index: 10;
-      padding: 0 20px;
-    }
+.chapter-row {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; padding: 50px 0 0;
+}
+.chapter-card {
+  background: #ffffff; border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.chapter-card:hover {
+  transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  border-color: rgba(224,123,42,0.4);
+}
+.chapter-num { font-family:'Outfit',sans-serif; font-size:11px; font-weight:800; letter-spacing:0.2em; color:var(--accent); margin-bottom:8px; }
+.chapter-card h4 { font-family:'Outfit',sans-serif; font-size:17px; font-weight:800; color:#0f172a; margin-bottom:16px; }
+.chapter-items { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.chapter-items li { font-size:12px; color:#475569; padding-left:14px; position:relative; }
+.chapter-items li::before { content:'·'; position:absolute; left:0; color:var(--accent); font-size:16px; line-height:1; top:1px; }
 
-    .tabs-wrapper {
-      background: #ffffff;
-      padding: 8px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      display: flex;
-      justify-content: space-between;
-      gap: 4px;
-      overflow-x: auto;
-    }
+/* ── BRAND PREVIEW ── */
+.brand-preview-section { padding: 80px 0; border-top: 1px solid var(--border); background: var(--bg); }
+.preview-headline {
+  font-family:'Outfit',sans-serif; font-size:clamp(32px,4vw,52px); font-weight:900;
+  color:#0f172a; text-align:center; margin-bottom:12px;
+}
+.preview-sub { text-align:center; font-size:16px; color:#64748b; margin-bottom:60px; }
+.preview-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; }
+.preview-card {
+  background:#ffffff; border:1px solid var(--border); border-radius:14px;
+  overflow:hidden; transition:transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.preview-card:hover { transform:translateY(-4px); box-shadow:0 20px 48px rgba(0,0,0,0.12); }
+.preview-card.full-width { grid-column:1 / -1; }
+.preview-card-header {
+  padding:20px 28px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  background: #ffffff;
+}
+.preview-card-header h4 { font-family:'Outfit',sans-serif; font-size:14px; font-weight:800; color:#0f172a; letter-spacing:0.05em; }
+.preview-chip {
+  font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase;
+  color:var(--accent); background:#fff3e8; border:1px solid rgba(224,123,42,0.25);
+  padding:4px 10px; border-radius:3px;
+}
+.preview-card-body { padding:28px; background: #ffffff; }
 
-    .tab-btn {
-      flex: 1;
-      min-width: 120px;
-      background: transparent;
-      border: none;
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-muted);
-      padding: 12px 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+/* Swatches */
+.swatches-row { display:flex; gap:14px; flex-wrap:wrap; }
+.swatch { display:flex; flex-direction:column; align-items:center; gap:10px; flex:1; min-width:80px; }
+.swatch-color { width:100%; min-width:80px; height:80px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); }
+.swatch-name { font-family:'Outfit',sans-serif; font-size:11px; font-weight:700; color:#0f172a; text-align:center; }
+.swatch-hex { font-size:11px; color:#475569; font-family:'Inter',monospace; text-align:center; }
+.swatch-rgb { font-size:10px; color:#94a3b8; font-family:'Inter',monospace; text-align:center; }
 
-    .tab-btn:hover {
-      color: var(--navy);
-      background-color: var(--light-bg);
-    }
+/* Typography */
+.typo-preview { display:flex; flex-direction:column; gap:20px; }
+.typo-row { display:flex; align-items:baseline; gap:20px; padding-bottom:16px; border-bottom:1px solid #e8edf4; }
+.typo-row:last-child { border-bottom:none; }
+.typo-label-col { width:48px; flex-shrink:0; font-family:'Outfit',sans-serif; font-size:10px; font-weight:800; letter-spacing:0.15em; color:var(--accent); text-transform:uppercase; }
+.typo-h1 { font-family:'Outfit',sans-serif; font-weight:900; font-size:52px; color:#0f172a; line-height:1; }
+.typo-h2 { font-family:'Outfit',sans-serif; font-weight:700; font-size:36px; color:#0f172a; line-height:1; }
+.typo-sh { font-family:'Outfit',sans-serif; font-weight:600; font-size:22px; color:#0f172a; }
+.typo-body { font-family:'Inter',sans-serif; font-weight:400; font-size:15px; color:#64748b; line-height:1.7; }
+.typo-alpha { font-family:'Outfit',sans-serif; font-weight:600; font-size:15px; color:#94a3b8; letter-spacing:0.12em; line-height:1.9; word-spacing:4px; }
 
-    .tab-btn.active {
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
-      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.2);
-    }
+/* Logo */
+.logo-preview-area { display:flex; flex-direction:column; gap:32px; }
+.logo-variant { display:flex; flex-direction:column; gap:12px; }
+.logo-variant-label { font-family:'Outfit',sans-serif; font-size:10px; font-weight:800; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; }
+.logo-on-dark { background:#07101e; border:1px solid var(--border); border-radius:10px; padding:40px; display:flex; align-items:center; justify-content:center; }
+.logo-on-light { background:#f0f4f8; border:1px solid rgba(0,0,0,0.08); border-radius:10px; padding:40px; display:flex; align-items:center; justify-content:center; }
+.steelbid-logo-lg { display:flex; align-items:center; gap:18px; }
+.logo-icon-lg {
+  width:72px; height:72px; background:var(--accent); border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Outfit',sans-serif; font-weight:900; font-size:40px; color:white;
+  flex-shrink:0; box-shadow:0 8px 24px rgba(224,123,42,0.4);
+}
+.logo-wm-dark { font-family:'Outfit',sans-serif; font-size:48px; font-weight:900; line-height:1; color:white; }
+.logo-wm-dark .bid { color:var(--accent); }
+.logo-wm-light { font-family:'Outfit',sans-serif; font-size:48px; font-weight:900; line-height:1; color:#07101e; }
+.logo-wm-light .bid { color:var(--accent); }
+.logo-icon-sizes { display:flex; gap:20px; align-items:center; }
+.logo-icon-sm { background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; color:white; flex-shrink:0; }
 
-    /* ─── MAIN CONTENT ─── */
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 20px 80px;
-    }
+/* Business Card */
+.bizcard-wrap { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; }
+.bizcard { width:380px; height:210px; border-radius:12px; overflow:hidden; position:relative; flex-shrink:0; box-shadow:0 16px 48px rgba(0,0,0,0.6); }
+.bizcard-front {
+  background: linear-gradient(135deg,#07101e 0%,#0d1f36 60%,#091828 100%);
+  width:100%; height:100%; padding:24px 28px;
+  display:flex; flex-direction:column; justify-content:space-between; position:relative;
+}
+.bizcard-front::after { content:''; position:absolute; right:0; top:0; bottom:0; width:4px; background:linear-gradient(180deg,var(--accent),var(--gold)); }
+.bizcard-logo-row { display:flex; align-items:center; gap:8px; }
+.bizcard-logo-icon { width:28px; height:28px; background:var(--accent); border-radius:5px; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:14px; color:white; }
+.bizcard-wordmark { font-family:'Outfit',sans-serif; font-size:16px; font-weight:900; color:white; }
+.bizcard-wordmark .bid { color:var(--accent); }
+.bizcard-name { font-family:'Outfit',sans-serif; font-size:20px; font-weight:800; color:white; margin-bottom:2px; }
+.bizcard-title-text { font-size:11px; color:var(--accent); font-family:'Outfit',sans-serif; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; }
+.bizcard-contacts { display:flex; flex-direction:column; gap:3px; }
+.bizcard-contact { font-size:11px; color:var(--muted); font-family:'Inter',sans-serif; }
+.bizcard-back { background:var(--accent); width:380px; height:210px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; box-shadow:0 16px 48px rgba(0,0,0,0.6); }
+.bizcard-back-wm { font-family:'Outfit',sans-serif; font-size:36px; font-weight:900; color:white; letter-spacing:-0.02em; }
+.bizcard-back-tag { font-size:11px; color:rgba(255,255,255,0.7); letter-spacing:0.3em; text-transform:uppercase; font-weight:600; }
 
-    /* ─── FEATURE SECTION / GRID ─── */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 24px;
-      margin-bottom: 60px;
-    }
+/* Letterhead */
+.letterhead { background:#f8fafc; border-radius:10px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.4); }
+.lh-header { background:#07101e; padding:24px 36px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid var(--accent); }
+.lh-header-logo { display:flex; align-items:center; gap:10px; }
+.lh-logo-icon { width:36px; height:36px; background:var(--accent); border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:18px; color:white; }
+.lh-wordmark { font-family:'Outfit',sans-serif; font-size:22px; font-weight:900; color:white; }
+.lh-wordmark .bid { color:var(--accent); }
+.lh-contact-info p { font-size:11px; color:var(--muted); line-height:1.6; text-align:right; }
+.lh-body { padding:36px; background:#f8fafc; }
+.lh-date-line { font-size:12px; color:#6b7280; margin-bottom:24px; font-family:'Inter',sans-serif; }
+.lh-subject { font-family:'Outfit',sans-serif; font-size:15px; font-weight:700; color:#1a2a3a; margin-bottom:18px; padding-bottom:10px; border-bottom:1px solid #d1dbe8; }
+.lh-text-line { height:8px; background:#e2e8f0; border-radius:4px; margin-bottom:10px; }
+.lh-text-line.short { width:60%; }
+.lh-text-line.med { width:80%; }
+.lh-footer { background:#f0f4f8; padding:14px 36px; border-top:1px solid #d1dbe8; display:flex; justify-content:space-between; align-items:center; }
+.lh-footer p { font-size:10px; color:#9ca3af; font-family:'Inter',sans-serif; }
+.lh-footer-accent { font-size:10px; color:var(--accent); font-weight:700; font-family:'Outfit',sans-serif; letter-spacing:0.1em; }
 
-    .feature-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
+/* Social Post */
+.social-post {
+  width:320px; height:320px;
+  background:linear-gradient(145deg,#07101e,#0d1f36);
+  border-radius:16px; padding:28px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  margin:0 auto; box-shadow:0 12px 40px rgba(0,0,0,0.6); border:1px solid var(--border);
+  position:relative; overflow:hidden;
+}
+.social-post::before { content:''; position:absolute; top:-40px; right:-40px; width:160px; height:160px; background:radial-gradient(circle,rgba(224,123,42,0.12) 0%,transparent 70%); pointer-events:none; }
+.live-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(224,123,42,0.15); border:1px solid rgba(224,123,42,0.4); color:var(--accent); font-family:'Outfit',sans-serif; font-size:11px; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; padding:5px 12px; border-radius:4px; width:fit-content; }
+.live-dot { width:6px; height:6px; background:#ef4444; border-radius:50%; animation:blink 1.2s ease infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.social-product { font-family:'Outfit',sans-serif; font-size:20px; font-weight:800; color:var(--text); margin-bottom:4px; }
+.social-price-label { font-size:11px; color:var(--muted); margin-bottom:2px; text-transform:uppercase; letter-spacing:0.1em; }
+.social-price { font-family:'Outfit',sans-serif; font-size:30px; font-weight:900; color:var(--gold); }
+.social-footer-row { display:flex; justify-content:space-between; align-items:center; }
+.social-logo-sm { display:flex; align-items:center; gap:6px; }
+.social-logo-icon-sm { width:22px; height:22px; background:var(--accent); border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:11px; color:white; }
+.social-wm-sm { font-family:'Outfit',sans-serif; font-size:14px; font-weight:900; color:white; }
+.social-wm-sm .bid { color:var(--accent); }
+.bid-now-btn { background:var(--accent); color:white; font-family:'Outfit',sans-serif; font-size:12px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:8px 18px; border-radius:6px; box-shadow:0 4px 14px rgba(224,123,42,0.4); }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: transparent;
-      transition: background-color 0.3s;
-    }
+/* Email Signature */
+.email-sig { background:white; border-radius:10px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.4); max-width:520px; margin:0 auto; }
+.sig-top { border-top:3px solid var(--accent); padding:20px 24px; display:flex; gap:16px; align-items:center; background:white; }
+.sig-logo-block { display:flex; align-items:center; gap:8px; }
+.sig-logo-icon { width:38px; height:38px; background:var(--accent); border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:18px; color:white; }
+.sig-wordmark { font-family:'Outfit',sans-serif; font-size:20px; font-weight:900; color:#07101e; }
+.sig-wordmark .bid { color:var(--accent); }
+.sig-divider-v { width:1px; height:48px; background:#d1dbe8; }
+.sig-person-name { font-family:'Outfit',sans-serif; font-size:16px; font-weight:800; color:#1a2a3a; }
+.sig-person-title { font-size:12px; color:var(--accent); font-weight:600; letter-spacing:0.08em; }
+.sig-contact-row { padding:12px 24px 16px; background:white; display:flex; gap:20px; flex-wrap:wrap; border-top:1px solid #f0f4f8; }
+.sig-contact-item { display:flex; align-items:center; gap:6px; }
+.sig-contact-text { font-size:12px; color:#374151; }
+.sig-footer { background:#f8fafc; padding:10px 24px; display:flex; align-items:center; gap:12px; border-top:1px solid #e8edf2; }
+.sig-social-icon { width:24px; height:24px; background:#e2e8f0; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:12px; color:#374151; font-weight:700; }
+.sig-website { margin-left:auto; font-size:11px; color:var(--accent); font-weight:600; font-family:'Outfit',sans-serif; }
 
-    .feature-card.buyer::before { background: linear-gradient(90deg, var(--mid-blue), #6366f1); }
-    .feature-card.seller::before { background: linear-gradient(90deg, var(--accent), var(--gold)); }
-    .feature-card.admin::before { background: linear-gradient(90deg, var(--navy), var(--steel)); }
-    .feature-card.platform::before { background: linear-gradient(90deg, var(--green), #34d399); }
+/* Billboard */
+.billboard-wrap { display:flex; flex-direction:column; align-items:center; }
+.billboard-frame { width:100%; max-width:700px; background:#2a2a2a; border-radius:8px 8px 0 0; padding:14px; box-shadow:0 -4px 20px rgba(0,0,0,0.5); }
+.billboard-design {
+  background:linear-gradient(135deg,#07101e 0%,#0d2040 50%,#07101e 100%);
+  border-radius:6px; padding:40px 48px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  position:relative; overflow:hidden; min-height:180px; border:1px solid var(--border);
+}
+.billboard-design::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 40% 80% at 30% 50%,rgba(224,123,42,0.07) 0%,transparent 70%); }
+.billboard-left { position:relative; z-index:1; }
+.billboard-tagline { font-family:'Outfit',sans-serif; font-size:34px; font-weight:900; color:white; line-height:1.1; margin-bottom:8px; }
+.billboard-tagline .hl { color:var(--accent); }
+.billboard-url { font-size:13px; color:var(--muted); font-family:'Inter',sans-serif; margin-bottom:16px; }
+.billboard-cta { display:inline-block; background:var(--accent); color:white; font-family:'Outfit',sans-serif; font-size:13px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:10px 24px; border-radius:6px; box-shadow:0 4px 18px rgba(224,123,42,0.4); }
+.billboard-right { position:relative; z-index:1; display:flex; align-items:center; gap:14px; }
+.billboard-logo-icon { width:64px; height:64px; background:var(--accent); border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:34px; color:white; box-shadow:0 8px 24px rgba(224,123,42,0.5); }
+.billboard-wm { font-family:'Outfit',sans-serif; font-size:38px; font-weight:900; color:white; }
+.billboard-wm .bid { color:var(--accent); }
+.billboard-stand { width:8px; height:60px; background:#3a3a3a; margin:0 auto; }
+.billboard-base { width:160px; height:12px; background:#2a2a2a; border-radius:0 0 4px 4px; margin:0 auto; box-shadow:0 4px 12px rgba(0,0,0,0.5); }
 
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(10, 25, 47, 0.08);
-      border-color: rgba(var(--accent-rgb), 0.15);
-    }
+/* T-Shirt */
+.tshirt-wrap { display:flex; justify-content:center; align-items:center; padding:16px 0; }
+.tshirt-svg { filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5)); }
 
-    .card-top {
-      margin-bottom: 24px;
-    }
+/* Dos Donts */
+.dos-donts-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.dos-col, .donts-col { border-radius:10px; overflow:hidden; }
+.col-header { padding:16px 22px; display:flex; align-items:center; gap:10px; font-family:'Outfit',sans-serif; font-size:14px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; }
+.dos-col .col-header { background:rgba(52,211,153,0.12); color:#34d399; border:1px solid rgba(52,211,153,0.2); border-radius:10px 10px 0 0; }
+.donts-col .col-header { background:rgba(239,68,68,0.1); color:#ef4444; border:1px solid rgba(239,68,68,0.2); border-radius:10px 10px 0 0; }
+.col-items { border:1px solid var(--border); border-top:none; border-radius:0 0 10px 10px; overflow:hidden; }
+.col-item { padding:14px 22px; display:flex; align-items:flex-start; gap:12px; border-bottom:1px solid var(--border2); }
+.col-item:last-child { border-bottom:none; }
+.col-item-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+.col-item p { font-size:13px; color:#475569; line-height:1.5; }
 
-    .feature-icon-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+/* ── FOOTER ── */
+.site-footer { background:#0d1b2a; border-top:1px solid rgba(255,255,255,0.08); padding:60px 0; }
+.footer-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
+.footer-brand { display:flex; flex-direction:column; gap:16px; }
+.footer-logo { display:flex; align-items:center; gap:10px; }
+.footer-logo-icon { width:36px; height:36px; background:var(--accent); border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:900; font-size:18px; color:white; }
+.footer-wordmark { font-family:'Outfit',sans-serif; font-size:22px; font-weight:900; color:var(--text); }
+.footer-wordmark .bid { color:var(--accent); }
+.footer-desc { font-size:13px; color:var(--muted); line-height:1.7; }
+.footer-col h5 { font-family:'Outfit',sans-serif; font-size:12px; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.footer-col ul li { font-size:13px; color:var(--muted); }
+.footer-col ul li span { color:var(--text); font-weight:600; }
+.footer-bottom { border-top:1px solid var(--border2); padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+.footer-bottom p { font-size:12px; color:#3a5070; }
+.footer-bottom .agency { color:var(--accent); font-weight:700; }
 
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-    }
-
-    .buyer .feature-icon { background: rgba(99, 102, 241, 0.1); }
-    .seller .feature-icon { background: rgba(245, 166, 35, 0.1); }
-    .admin .feature-icon { background: rgba(10, 25, 47, 0.08); }
-    .platform .feature-icon { background: rgba(16, 185, 129, 0.1); }
-
-    .category-tag {
-      font-family: 'Outfit', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-
-    .buyer .category-tag { background: rgba(99, 102, 241, 0.08); color: #6366f1; }
-    .seller .category-tag { background: rgba(224, 123, 42, 0.08); color: var(--accent); }
-    .admin .category-tag { background: rgba(10, 25, 47, 0.06); color: var(--navy); }
-    .platform .category-tag { background: rgba(16, 185, 129, 0.08); color: var(--green); }
-
-    .feature-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-
-    .feature-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-      line-height: 1.6;
-    }
-
-    .feature-points {
-      list-style: none;
-      margin-bottom: 24px;
-    }
-
-    .feature-points li {
-      font-size: 13.5px;
-      color: var(--text-main);
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .feature-points li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      font-weight: 700;
-    }
-
-    .buyer .feature-points li::before { color: #6366f1; }
-    .seller .feature-points li::before { color: var(--accent); }
-    .admin .feature-points li::before { color: var(--navy); }
-    .platform .feature-points li::before { color: var(--green); }
-
-    /* ─── PREMIUM BENEFIT BOX ─── */
-    .benefit-box {
-      background-color: var(--light-bg);
-      border-radius: 12px;
-      padding: 16px;
-      border-left: 3px solid;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      margin-top: auto;
-    }
-
-    .buyer .benefit-box { border-left-color: #6366f1; background-color: rgba(99, 102, 241, 0.02); }
-    .seller .benefit-box { border-left-color: var(--accent); background-color: rgba(224, 123, 42, 0.02); }
-    .admin .benefit-box { border-left-color: var(--navy); background-color: rgba(10, 25, 47, 0.015); }
-    .platform .benefit-box { border-left-color: var(--green); background-color: rgba(16, 185, 129, 0.02); }
-
-    .benefit-icon {
-      font-size: 16px;
-      line-height: 1;
-    }
-
-    .benefit-text {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--navy);
-      line-height: 1.5;
-    }
-
-    .benefit-text strong {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .buyer .benefit-text strong { color: #4f46e5; }
-    .seller .benefit-text strong { color: #c25e14; }
-    .admin .benefit-text strong { color: var(--navy); }
-    .platform .benefit-text strong { color: #047857; }
-
-    /* ─── PROCESS FLOW ─── */
-    .section-headline {
-      text-align: center;
-      margin: 80px 0 40px;
-    }
-
-    .section-headline h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-
-    .section-headline p {
-      font-size: 16px;
-      color: var(--text-muted);
-      max-width: 580px;
-      margin: 0 auto;
-    }
-
-    .flow-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-      background: #ffffff;
-      padding: 40px 30px;
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-      position: relative;
-    }
-
-    .flow-step {
-      text-align: center;
-      position: relative;
-    }
-
-    .flow-circle {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
-      color: #ffffff;
-      font-family: 'Outfit', sans-serif;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      box-shadow: 0 6px 15px rgba(10, 25, 47, 0.15);
-      border: 2px solid #ffffff;
-      outline: 2px solid var(--border);
-    }
-
-    .flow-step h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .flow-step p {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      padding: 0 8px;
-    }
-
-    /* ─── PRINT / FOOTER ─── */
-    footer {
-      text-align: center;
-      padding: 60px 20px;
-      background-color: var(--navy);
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 13px;
-      border-top: 4px solid var(--accent);
-    }
-
-    footer p {
-      margin-bottom: 8px;
-    }
-
-    .footer-logo {
-      font-family: 'Outfit', sans-serif;
-      font-size: 20px;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-    }
-
-    .footer-logo span {
-      color: var(--accent);
-    }
-
-    /* Print & Responsive optimization */
-    @media (max-width: 768px) {
-      .tabs-wrapper {
-        justify-content: flex-start;
-      }
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+/* ── RESPONSIVE ── */
+@media (max-width:1024px) {
+  .cards-grid { grid-template-columns:repeat(2,1fr); }
+  .chapter-row { grid-template-columns:repeat(3,1fr); }
+  .sitemap-groups { grid-template-columns:repeat(3,1fr); }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
+  .flow-grid { grid-template-columns:repeat(3,1fr); }
+  .flow-grid::before { display:none; }
+}
+@media (max-width:768px) {
+  .container { padding:0 20px; }
+  .cards-grid, .web-cards-grid, .dos-donts-grid { grid-template-columns:1fr; }
+  .chapter-row { grid-template-columns:repeat(2,1fr); }
+  .sitemap-groups { grid-template-columns:repeat(2,1fr); }
+  .flow-grid { grid-template-columns:repeat(2,1fr); }
+  .preview-grid { grid-template-columns:1fr; }
+  .bizcard-wrap { flex-direction:column; align-items:center; }
+  .billboard-design { flex-direction:column; text-align:center; }
+  .footer-grid { grid-template-columns:1fr; }
+  .swatches-row { gap:8px; }
+  .swatch { min-width:60px; }
+  .swatch-color { min-width:60px; height:60px; }
+  .brand-name-grid { grid-template-columns:1fr !important; }
+}
+@media (max-width:480px) {
+  .chapter-row { grid-template-columns:1fr; }
+  .sitemap-groups { grid-template-columns:1fr; }
+  .flow-grid { grid-template-columns:1fr; }
+}
+</style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-content">
-      <span class="badge">Platform Specifications</span>
-      <h1>SteelBid <span>Feature Portfolio</span></h1>
-      <p class="subtitle">A detailed breakdown of all user-facing systems, operational tools, and enterprise cloud infrastructure included in your custom build.</p>
-    </div>
-  </header>
+<!-- ════════════════════════════════════════
+     SECTION 01 — WEB APPLICATION
+════════════════════════════════════════ -->
+<section id="sec01">
 
-  <!-- TAB CONTROLS -->
-  <div class="tabs-container">
-    <div class="tabs-wrapper">
-      <button class="tab-btn active" onclick="filterFeatures('all', this)">All Systems</button>
-      <button class="tab-btn" onclick="filterFeatures('buyer', this)">Buyer Suite</button>
-      <button class="tab-btn" onclick="filterFeatures('seller', this)">Seller Portal</button>
-      <button class="tab-btn" onclick="filterFeatures('admin', this)">Operations &amp; Admin</button>
-      <button class="tab-btn" onclick="filterFeatures('platform', this)">Cloud &amp; Security</button>
+  <div class="section-hero">
+    <div class="watermark">01</div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="label">Section 01 · Web Application</div>
+        <h2>Web Application<br>Feature Specifications</h2>
+        <div class="hero-line"></div>
+        <p>A fully engineered real-time bidding platform built for India's industrial steel market — sub-100ms WebSocket auctions, escrow payments, GST-verified buyers, and enterprise-grade AWS infrastructure.</p>
+        <div class="tech-badges">
+          <span class="badge">React</span>
+          <span class="badge">Node.js</span>
+          <span class="badge">WebSockets</span>
+          <span class="badge">Redis</span>
+          <span class="badge">PostgreSQL</span>
+          <span class="badge">AWS</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN PAGE CONTENT -->
-  <main>
-    
-    <!-- FEATURES PORTFOLIO GRID -->
-    <div class="feature-grid" id="featureGrid">
-      
-      <!-- BUYER 1 -->
-      <div class="feature-card buyer">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">⚡</div>
-            <span class="category-tag">Buyer Suite</span>
-          </div>
-          <h3 class="feature-title">Live Real-Time Bidding Engine</h3>
-          <p class="feature-desc">A highly-optimized bidding workspace where every auction tick updates dynamically in real time without refreshing the page.</p>
-          <ul class="feature-points">
-            <li>Dynamic real-time countdown timer</li>
-            <li>Instant on-screen outbid visual cues</li>
-            <li>Last-minute automatic bid extension</li>
-            <li>Full transparent bidding history logs</li>
-          </ul>
-        </div>
+  <div class="container tabs-wrap">
+
+    <div class="tabs">
+      <button class="tab-btn active" data-filter="all">All Systems</button>
+      <button class="tab-btn" data-filter="buyer">Buyer Suite</button>
+      <button class="tab-btn" data-filter="seller">Seller Portal</button>
+      <button class="tab-btn" data-filter="admin">Operations &amp; Admin</button>
+      <button class="tab-btn" data-filter="platform">Cloud &amp; Security</button>
+    </div>
+
+    <div class="cards-grid" id="featureCards">
+
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">⚡</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Live Real-Time Bidding Engine</h3>
+        <p class="card-desc">WebSocket-powered auction core engineered for zero-lag competitive bidding on steel lots.</p>
+        <ul class="card-bullets">
+          <li>Sub-100ms bid updates broadcast to all live participants simultaneously</li>
+          <li>₹100 minimum increment enforcement with instant validation</li>
+          <li>3-minute anti-snipe extension triggered on last-second bids</li>
+          <li>Simultaneous multi-lot bidding across parallel auction rooms</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Drives excitement and trust. Auto-extension stops last-second sniping, ensuring the seller secures maximum market price.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Creates urgency and competitive tension — proven to drive 18–35% higher final hammer prices vs. sealed-bid formats.</p>
         </div>
       </div>
 
-      <!-- BUYER 2 -->
-      <div class="feature-card buyer">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">📱</div>
-            <span class="category-tag">Buyer Suite</span>
-          </div>
-          <h3 class="feature-title">Mobile-Responsive Platform</h3>
-          <p class="feature-desc">Flawless touch-optimized user interfaces tailored for mobile, tablet, and desktop screens for on-the-go bidding.</p>
-          <ul class="feature-points">
-            <li>Fast loading profiles for rural areas</li>
-            <li>Touch-friendly active bid panel</li>
-            <li>Optimized layout for site engineers</li>
-            <li>Direct image upload capability</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">📱</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Mobile-Responsive Platform</h3>
+        <p class="card-desc">Full-featured auction experience on any device — no app installation required.</p>
+        <ul class="card-bullets">
+          <li>Progressive Web App (PWA) — works on phone browsers instantly</li>
+          <li>Touch-optimised bid controls for fast finger-tap bidding</li>
+          <li>Optimised for 2G/3G connectivity in steel yards and warehouses</li>
+          <li>Consistent experience across Android, iPhone, tablets, and desktop</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Your buyers can monitor and place bids directly from their mobile device while inspecting materials in a steel yard.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Expands buyer reach to field-based steel traders who operate entirely from smartphones — no PC required.</p>
         </div>
       </div>
 
-      <!-- BUYER 3 -->
-      <div class="feature-card buyer">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">💳</div>
-            <span class="category-tag">Buyer Suite</span>
-          </div>
-          <h3 class="feature-title">Secure Razorpay Escrow Integration</h3>
-          <p class="feature-desc">Professional fund protection integration keeping payment escrow secure until both parties declare shipment successful.</p>
-          <ul class="feature-points">
-            <li>Indian Cards, NetBanking, & UPI gateway</li>
-            <li>Secured holds and release mechanisms</li>
-            <li>Automated payment invoice generator</li>
-            <li>Instant transaction refund processing</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">🔐</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Secure Razorpay Escrow Integration</h3>
+        <p class="card-desc">3-stage payment protection that safeguards both buyer and seller throughout the transaction lifecycle.</p>
+        <ul class="card-bullets">
+          <li>Stage 1: Refundable registration deposit to unlock bidding access</li>
+          <li>Stage 2: Winner payment held securely in escrow post-auction</li>
+          <li>Stage 3: Seller release triggered only on confirmed dispatch</li>
+          <li>PCI-DSS compliant — no card data stored on SteelBid servers</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Removes transaction friction. Buyers bid comfortably knowing their funds are fully protected until the steel is successfully received.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Eliminates payment default risk — the #1 barrier to trust in B2B steel marketplace transactions.</p>
         </div>
       </div>
 
-      <!-- BUYER 4 -->
-      <div class="feature-card buyer">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">🔔</div>
-            <span class="category-tag">Buyer Suite</span>
-          </div>
-          <h3 class="feature-title">Instant Smart WhatsApp Alerts</h3>
-          <p class="feature-desc">Direct system notifications routing critical auction updates straight to the buyer's WhatsApp number and email inbox.</p>
-          <ul class="feature-points">
-            <li>Instant "Outbid" alerts with direct link</li>
-            <li>Warning alerts when auction ends soon</li>
-            <li>Successful registration/KYC confirmations</li>
-            <li>Winning bids and shipping tracking details</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="buyer">
+        <div class="card-icon">💬</div>
+        <span class="card-tag tag-buyer">Buyer Suite</span>
+        <h3 class="card-title">Instant Smart WhatsApp Alerts</h3>
+        <p class="card-desc">Automated WhatsApp Business API notifications keeping buyers and sellers engaged at every stage.</p>
+        <ul class="card-bullets">
+          <li>Bulk pre-auction alerts: upcoming lots matching buyer preferences</li>
+          <li>Instant winner notification with payment deadline and amount</li>
+          <li>Dispatch update with tracking details when seller ships</li>
+          <li>Payment deadline reminder 6 hours before expiry</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Increases bids without effort. Directly notifies buyers the instant they are outbid, prompting them back into the auction to bid higher.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>WhatsApp has 98% open rate vs. 22% email — critical for time-sensitive auction communications.</p>
         </div>
       </div>
 
-      <!-- SELLER 1 -->
-      <div class="feature-card seller">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">📋</div>
-            <span class="category-tag">Seller Portal</span>
-          </div>
-          <h3 class="feature-title">Seller Consignment &amp; Active Auctions</h3>
-          <p class="feature-desc">A dedicated tracking workspace for sellers to monitor live bids, bidder engagement, and transaction milestones for their listed lots.</p>
-          <ul class="feature-points">
-            <li>Real-time bidder counter on listed materials</li>
-            <li>Live bidding activity feeds and leaderboard</li>
-            <li>Automatic notifications of secured buyer escrow</li>
-            <li>Structured dispatch &amp; weight confirmation guides</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="seller">
+        <div class="card-icon">🏭</div>
+        <span class="card-tag tag-seller">Seller Portal</span>
+        <h3 class="card-title">Seller Consignment &amp; Active Auctions</h3>
+        <p class="card-desc">Steel-specific listing system with all the fields manufacturers and traders actually need.</p>
+        <ul class="card-bullets">
+          <li>Steel-specific fields: length, width, thickness, shape, quality grade</li>
+          <li>3–4 photo uploads per lot with compression and CDN delivery</li>
+          <li>Base price and total quantity configuration per consignment</li>
+          <li>Live auction monitoring dashboard — bid count and current price</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Sellers get 100% transparency on bid progression and security deposits. They know exactly when to dispatch metal without manual phone calls.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Sellers list in minutes with industry-standard spec fields — no back-and-forth with support to create accurate listings.</p>
         </div>
       </div>
 
-      <!-- SELLER 2 -->
-      <div class="feature-card seller">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">⚖️</div>
-            <span class="category-tag">Seller Portal</span>
-          </div>
-          <h3 class="feature-title">Dispute &amp; Claim Raising Center</h3>
-          <p class="feature-desc">A formal safety-net console enabling sellers to flag payment issues, logistics delays, or buyer defaults directly to platform operations.</p>
-          <ul class="feature-points">
-            <li>One-click dispute trigger on any active/closed deal</li>
-            <li>Digital uploader for weight slips and proof files</li>
-            <li>Escrow-freeze system block on contested lots</li>
-            <li>Direct mediation chat link with platform admins</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="seller">
+        <div class="card-icon">⚖️</div>
+        <span class="card-tag tag-seller">Seller Portal</span>
+        <h3 class="card-title">Dispute &amp; Claim Raising Center</h3>
+        <p class="card-desc">Structured post-auction dispute workflow that protects both parties with a full audit trail.</p>
+        <ul class="card-bullets">
+          <li>Post-auction dispute filing with evidence upload (photos, documents)</li>
+          <li>Admin arbitration workflow with defined SLA timelines</li>
+          <li>Outcome tracking — accepted, rejected, or escalated status</li>
+          <li>Full communication log preserved for legal reference</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Guarantees peace of mind. If a buyer behaves in bad faith, the seller can instantly raise a dispute to freeze the escrow funds until resolved.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Formalised dispute resolution builds institutional trust — essential for high-value B2B steel transactions.</p>
         </div>
       </div>
 
-      <!-- SELLER 3 -->
-      <div class="feature-card seller">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">📈</div>
-            <span class="category-tag" style="background: rgba(224, 123, 42, 0.08); color: var(--accent);">Optional Add-on</span>
-          </div>
-          <h3 class="feature-title">Seller Sales Analytics <span style="font-size: 11px; font-weight: bold; color: var(--accent); background: rgba(224, 123, 42, 0.1); padding: 2px 8px; border-radius: 4px; margin-left: 6px; vertical-align: middle;">Optional</span></h3>
-          <p class="feature-desc">Advanced analytical reporting tracing past sales patterns, successful tonnages, average bid values, and buyer geography.</p>
-          <ul class="feature-points">
-            <li>Average price per ton historical trend charts</li>
-            <li>Monthly listed vs successfully sold tonnage reports</li>
-            <li>Buyer demographic and search keyword metrics</li>
-            <li>Downloadable ledgers and performance sheets</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="seller">
+        <div class="card-icon">📊</div>
+        <span class="card-tag tag-seller">Seller Portal</span>
+        <h3 class="card-title">Seller Sales Analytics</h3>
+        <p class="card-desc">Data intelligence dashboard that helps sellers price smarter and time auctions better.</p>
+        <ul class="card-bullets">
+          <li>Auction performance: sell-through rate, average realisation</li>
+          <li>Buyer demand heatmap by steel category and region</li>
+          <li>Pricing trends over time vs. market average</li>
+          <li>Best-performing time slots and day-of-week analysis</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Empowers high-volume sellers with enterprise-grade data intelligence to fine-tune future production rates and bidding reserves.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Sellers who understand demand patterns consistently achieve 8–22% better realisations per lot.</p>
         </div>
       </div>
 
-      <!-- ADMIN 1 -->
-      <div class="feature-card admin">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">🖥️</div>
-            <span class="category-tag">Admin Panel</span>
-          </div>
-          <h3 class="feature-title">Operations Command Centre</h3>
-          <p class="feature-desc">A unified admin interface giving you full command over auctions, active bidders, approvals, and transaction volumes.</p>
-          <ul class="feature-points">
-            <li>Single-click active listing publisher</li>
-            <li>Manual auction freeze & override keys</li>
-            <li>Escrow hold-and-release manager</li>
-            <li>Direct Dispute & Negotiation panels</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🎛️</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Operations Command Centre</h3>
+        <p class="card-desc">Full lifecycle auction management from a single dashboard — everything ops teams need in one place.</p>
+        <ul class="card-bullets">
+          <li>Approve, reject, or pause live auctions in real time</li>
+          <li>Set auction start/end timings and configure lot parameters</li>
+          <li>Monitor live bids with admin-level view of all participants</li>
+          <li>Override or cancel bids in exceptional circumstances</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            You can run the entire platform with just 1 or 2 operators. Easily step in to resolve user errors or dispute questions.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>One operations manager can run 20+ simultaneous auctions — dramatically reducing operational overhead.</p>
         </div>
       </div>
 
-      <!-- ADMIN 2 -->
-      <div class="feature-card admin">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">👤</div>
-            <span class="category-tag">Admin Panel</span>
-          </div>
-          <h3 class="feature-title">Advanced GST &amp; KYC Verification</h3>
-          <p class="feature-desc">Automated business KYC systems ensuring only legally verified corporate steel actors participate in active auctions.</p>
-          <ul class="feature-points">
-            <li>GST & PAN registration forms</li>
-            <li>Corporate bank account validators</li>
-            <li>Digital document vetting workspace</li>
-            <li>Blacklisted company blocking system</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🪪</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Advanced GST &amp; KYC Verification</h3>
+        <p class="card-desc">Automated compliance engine ensuring only legitimate, verified businesses participate in auctions.</p>
+        <ul class="card-bullets">
+          <li>GST number validation via government API — real-time check</li>
+          <li>Bank account validation via penny-drop or IFSC lookup</li>
+          <li>Security deposit management with automated eligibility enforcement</li>
+          <li>Buyer blacklist management for defaulters and fraud cases</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Keeps your platform fully secure and trusted. Eliminates non-paying bidders, fake profiles, and bad-faith sellers completely.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Verified-only bidding eliminates ghost bids and payment defaults — a critical credibility differentiator.</p>
         </div>
       </div>
 
-      <!-- ADMIN 3 -->
-      <div class="feature-card admin">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">📤</div>
-            <span class="category-tag">Admin Panel</span>
-          </div>
-          <h3 class="feature-title">Smart Steel Listing Control Center</h3>
-          <p class="feature-desc">A unified curation workspace managed by administrators to vet, standardise, time-schedule, and publish material listings.</p>
-          <ul class="feature-points">
-            <li>Verification manager for chemical grade details</li>
-            <li>Tonnage & physical dimension parameter locks</li>
-            <li>Seller mill certificate & quality document validator</li>
-            <li>Lot launch queues and timed scheduling panel</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">📋</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Smart Steel Listing Control Center</h3>
+        <p class="card-desc">Intelligent listing approval workflow with steel-specific validation to maintain marketplace quality.</p>
+        <ul class="card-bullets">
+          <li>Category-based approval workflow with queue management</li>
+          <li>Spec validation — flags incomplete or inconsistent steel parameters</li>
+          <li>Quality grading with standardised grade nomenclature</li>
+          <li>Fraud prevention: duplicate listing detection and reputation scoring</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Gives the platform administrator 100% control over inventory quality. Prevents errors and inaccurate descriptions before buyers see them.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>High listing quality = higher buyer trust = more registered bidders = better realisations for sellers.</p>
         </div>
       </div>
 
-      <!-- ADMIN 4 -->
-      <div class="feature-card admin">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">🔑</div>
-            <span class="category-tag">Admin Panel</span>
-          </div>
-          <h3 class="feature-title">Private Reserve Pricing Control Room</h3>
-          <p class="feature-desc">Admin-locked control settings to review hidden reserve limits, manage bid matching, and resolve edge negotiations.</p>
-          <ul class="feature-points">
-            <li>Secure hidden reserve review and validation dashboard</li>
-            <li>Real-time alert indicators if the bid is close to reserve</li>
-            <li>Post-auction seller matching & mediation panels</li>
-            <li>Lot-release manual overrides for agreed settlements</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🔒</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Private Reserve Pricing Control Room</h3>
+        <p class="card-desc">Confidential floor price management protecting seller interests without compromising auction integrity.</p>
+        <ul class="card-bullets">
+          <li>Hidden reserve prices — never visible to bidders</li>
+          <li>Floor price enforcement with automatic lot withdrawal if unmet</li>
+          <li>Auto-reject bids below reserve with no system reveal</li>
+          <li>Admin override capability for special negotiated outcomes</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Keeps transaction conversion high. Admins can mediate directly when a live bid finishes just below reserve, securing deals that would otherwise fail.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Reserve pricing protects sellers from underselling while keeping the competitive tension of open bidding fully intact.</p>
         </div>
       </div>
 
-      <!-- ADMIN 5 -->
-      <div class="feature-card admin">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">💵</div>
-            <span class="category-tag">Admin Panel</span>
-          </div>
-          <h3 class="feature-title">Automated Commissions &amp; Billing</h3>
-          <p class="feature-desc">Intelligent transaction billing calculation, instantly calculating platform fee percentages and outputting invoices.</p>
-          <ul class="feature-points">
-            <li>Custom platform commission percentages</li>
-            <li>Automated GST invoice rendering</li>
-            <li>Automatic buyer/seller payout drafts</li>
-            <li>Full audit trial downloads for accountant</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="admin">
+        <div class="card-icon">🧾</div>
+        <span class="card-tag tag-admin">Operations &amp; Admin</span>
+        <h3 class="card-title">Automated Commissions &amp; Billing</h3>
+        <p class="card-desc">End-to-end financial operations automation — from commission calculation to seller remittance.</p>
+        <ul class="card-bullets">
+          <li>3% commission auto-calculated on every successful hammer price</li>
+          <li>GST-compliant winner invoice generated and emailed automatically</li>
+          <li>Seller remittance tracking with payment status dashboard</li>
+          <li>Monthly billing reconciliation report for finance team</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Eliminates all operational billing efforts. Invoices and commission percentages are computed, formatted, and emailed automatically.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Zero manual billing work — the system handles the full revenue cycle, enabling lean operations at scale.</p>
         </div>
       </div>
 
-      <!-- PLATFORM 1 -->
-      <div class="feature-card platform">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">☁️</div>
-            <span class="category-tag">Platform &amp; Infrastructure</span>
-          </div>
-          <h3 class="feature-title">AWS Enterprise Cloud Architecture</h3>
-          <p class="feature-desc">Modern enterprise-grade cloud deployment leveraging Amazon Web Services for 99.9% uptime and extreme reliability.</p>
-          <ul class="feature-points">
-            <li>Dynamic elastic server auto-scaling</li>
-            <li>Global CDN for superfast image loads</li>
-            <li>Automatic hourly secure db backups</li>
-            <li>Isolated developer/staging/prod clouds</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="platform">
+        <div class="card-icon">☁️</div>
+        <span class="card-tag tag-platform">Cloud &amp; Security</span>
+        <h3 class="card-title">AWS Enterprise Cloud Architecture</h3>
+        <p class="card-desc">Production-grade AWS infrastructure engineered for lakh-scale concurrency on auction day.</p>
+        <ul class="card-bullets">
+          <li>Auto-scaling EC2/ECS clusters — handles 10x traffic spikes automatically</li>
+          <li>CloudFront CDN for sub-200ms asset delivery across India</li>
+          <li>Application Load Balancer with health checks and failover</li>
+          <li>99.9% uptime SLA with multi-AZ PostgreSQL RDS deployment</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Guarantees flawless performance when 5,000 bidders join an intense live bidding event. No page sluggishness or database crashes.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Infrastructure that scales with business growth — no emergency engineering when 5,000 bidders log in simultaneously.</p>
         </div>
       </div>
 
-      <!-- PLATFORM 2 -->
-      <div class="feature-card platform">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">🛡️</div>
-            <span class="category-tag">Platform &amp; Infrastructure</span>
-          </div>
-          <h3 class="feature-title">OWASP Grade Enterprise Security</h3>
-          <p class="feature-desc">Rigorous data security and network protection keeping sensitive client records and financial transactions safe.</p>
-          <ul class="feature-points">
-            <li>SSL/TLS encrypted data channels</li>
-            <li>Advanced DDoS attack defense rules</li>
-            <li>Hashed database password algorithms</li>
-            <li>Compliant with Indian DPDP Act rules</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="platform">
+        <div class="card-icon">🛡️</div>
+        <span class="card-tag tag-platform">Cloud &amp; Security</span>
+        <h3 class="card-title">OWASP Grade Enterprise Security</h3>
+        <p class="card-desc">Multi-layer security architecture covering application, network, and payment layers.</p>
+        <ul class="card-bullets">
+          <li>HTTPS / TLS 1.3 encryption for all data in transit</li>
+          <li>AES-256 encryption for sensitive data at rest (KYC, bank details)</li>
+          <li>Rate limiting and DDoS protection via AWS WAF + Shield</li>
+          <li>PCI-compliant payment flow — no card data touches SteelBid servers</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            Prevents data theft, hacking, and platform disruption. Eliminates liability risks with corporate banks, sellers, and regulators.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>Enterprise security posture is a key trust signal for large industrial buyers handling crore-value transactions.</p>
         </div>
       </div>
 
-      <!-- PLATFORM 3 -->
-      <div class="feature-card platform">
-        <div class="card-top">
-          <div class="feature-icon-wrapper">
-            <div class="feature-icon">📦</div>
-            <span class="category-tag">Platform &amp; Infrastructure</span>
-          </div>
-          <h3 class="feature-title">Asset Handover &amp; Documentation</h3>
-          <p class="feature-desc">A complete package of developer files, configurations, and manuals ensuring you have permanent, autonomous control.</p>
-          <ul class="feature-points">
-            <li>100% clean production source code</li>
-            <li>API blueprints & data flow schema</li>
-            <li>AWS configuration instructions guide</li>
-            <li>3-month comprehensive warranty coverage</li>
-          </ul>
-        </div>
+      <div class="feat-card" data-cat="platform">
+        <div class="card-icon">📦</div>
+        <span class="card-tag tag-platform">Cloud &amp; Security</span>
+        <h3 class="card-title">Asset Handover &amp; Documentation</h3>
+        <p class="card-desc">Complete knowledge transfer ensuring full ownership and maintainability post-launch.</p>
+        <ul class="card-bullets">
+          <li>Full source code handover via GitHub repository with history</li>
+          <li>Complete API blueprint documentation (Swagger / Postman)</li>
+          <li>AWS infrastructure-as-code (Terraform/CDK) configuration guide</li>
+          <li>3-month post-launch warranty covering bugs and critical fixes</li>
+        </ul>
         <div class="benefit-box">
-          <div class="benefit-icon">🏆</div>
-          <div class="benefit-text">
-            <strong>Business Advantage</strong>
-            You own everything. There is no vendor lock-in. Any competent future engineer can easily pick up the files and add features.
-          </div>
+          <div class="benefit-label">Business Advantage</div>
+          <p>You own everything — full independence to maintain, extend, or hand off to any development team.</p>
         </div>
       </div>
 
     </div>
 
-    <!-- WORKFLOW FLOW CHART -->
-    <div class="section-headline">
-      <h2>How a Typical Auction Works</h2>
-      <p>A simple, secure, and transparent transactional flow for buyers, sellers, and administrators.</p>
-    </div>
-
-    <div class="flow-steps">
-      <div class="flow-step">
-        <div class="flow-circle">1</div>
-        <h4>Seller Lists Steel</h4>
-        <p>Seller uploads grade, specs, tons, and reserve price.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-circle">2</div>
-        <h4>Admin Approves</h4>
-        <p>Operations checks certificates and publishes the auction.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-circle">3</div>
-        <h4>Smart Notifications</h4>
-        <p>Verified buyers are alerted on WhatsApp &amp; Email.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-circle">4</div>
-        <h4>Real-Time Auction</h4>
-        <p>Buyers place bids live. Extensions prevent sniping.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-circle">5</div>
-        <h4>Winner Declared</h4>
-        <p>Highest bid above reserve is instantly notified.</p>
-      </div>
-      <div class="flow-step">
-        <div class="flow-circle">6</div>
-        <h4>Secure Escrow</h4>
-        <p>Razorpay holds funds until successful delivery confirmation.</p>
+    <!-- Auction Flow -->
+    <div class="flow-section">
+      <h3 class="flow-title">How a Typical Auction Works</h3>
+      <div class="flow-grid">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <h5>Seller Lists Lot</h5>
+          <p>Steel specs, photos, base price, and reserve submitted for admin approval</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <h5>Buyer Registers</h5>
+          <p>GST + KYC verified, security deposit paid, bidding access unlocked</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <h5>WhatsApp Alerts</h5>
+          <p>Bulk pre-auction notification sent to all eligible registered buyers</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <h5>Live Auction</h5>
+          <p>Real-time WebSocket bidding — sub-100ms updates, anti-snipe active</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <h5>Winner Pays</h5>
+          <p>Razorpay escrow holds payment — invoice auto-generated and sent</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">6</div>
+          <h5>Dispatch &amp; Release</h5>
+          <p>Seller ships, dispatch confirmed, escrow released and commission deducted</p>
+        </div>
       </div>
     </div>
 
-  </main>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Steel<span>Bid</span></div>
-    <p>Premium Digital Auction Platform Feature Specifications Portfolio</p>
-    <p style="opacity: 0.4; font-size: 11px; margin-top: 20px;">&copy; 2026 SteelBid. All rights to technology architecture and intellectual property reserved.</p>
-  </footer>
 
-  <!-- JS TAB FILTER LOGIC -->
-  <script>
-    function filterFeatures(category, btnElement) {
-      // 1. Manage Active Tab Class
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      btnElement.classList.add('active');
-      
-      // 2. Hide/Show Cards Based on Class
-      const cards = document.querySelectorAll('.feature-card');
-      
-      cards.forEach(card => {
-        if (category === 'all') {
-          card.style.display = 'flex';
+<!-- ════════════════════════════════════════
+     SECTION 02 — MARKETING WEBSITE
+════════════════════════════════════════ -->
+<section id="sec02">
+
+  <div class="section-hero">
+    <div class="watermark">02</div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="label">Section 02 · Marketing Website</div>
+        <h2>Marketing Website<br>Deliverables</h2>
+        <div class="hero-line"></div>
+        <p>A 28-page Nuxt.js + WordPress marketing website engineered for SEO dominance, high-conversion lead capture, and frictionless buyer and seller onboarding.</p>
+        <div class="tech-badges">
+          <span class="badge">Nuxt.js</span>
+          <span class="badge">WordPress CMS</span>
+          <span class="badge">SEO Optimised</span>
+          <span class="badge">Mobile First</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:60px;">
+
+    <div class="sitemap-card">
+      <div class="sitemap-card-title">Website Sitemap · 28 Pages</div>
+      <div class="sitemap-card-sub">Based on Mjunction, SteelEasy &amp; Steelmart competitor research — orange tags = custom-built pages, grey = standard pages</div>
+      <div class="sitemap-groups">
+
+        <div class="sitemap-group">
+          <h5>Core Pages (5)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Home</span>
+            <span class="page-tag">About Us</span>
+            <span class="page-tag custom">How It Works</span>
+            <span class="page-tag custom">Why SteelBid</span>
+            <span class="page-tag">Contact Us</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Auction Pages (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Live Auctions</span>
+            <span class="page-tag custom">Upcoming Auctions</span>
+            <span class="page-tag custom">Past Auction Results</span>
+            <span class="page-tag">Product Categories</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>For Buyers (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Buyer Registration</span>
+            <span class="page-tag custom">How to Bid</span>
+            <span class="page-tag">Buyer FAQs</span>
+            <span class="page-tag custom">KYC &amp; Verification</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>For Sellers (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Seller Registration</span>
+            <span class="page-tag custom">How to List Steel</span>
+            <span class="page-tag">Seller FAQs</span>
+            <span class="page-tag custom">Success Stories</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Trust &amp; Compliance (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Payment &amp; Escrow Policy</span>
+            <span class="page-tag custom">Dispute Resolution</span>
+            <span class="page-tag">KYC Policy</span>
+            <span class="page-tag">Testimonials</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Resources (3)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag custom">Blog / Steel Market News</span>
+            <span class="page-tag">Industry Updates</span>
+            <span class="page-tag">Media &amp; Press</span>
+          </div>
+        </div>
+
+        <div class="sitemap-group">
+          <h5>Utility Pages (4)</h5>
+          <div class="sitemap-pages">
+            <span class="page-tag">Privacy Policy</span>
+            <span class="page-tag">Terms &amp; Conditions</span>
+            <span class="page-tag">Refund Policy</span>
+            <span class="page-tag custom">404 Error Page</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="web-cards-grid">
+
+      <div class="web-card">
+        <div class="web-card-icon">⚡</div>
+        <div class="web-card-body">
+          <h4>Nuxt.js SSR Frontend</h4>
+          <p>Server-side rendering for lightning-fast first paint and full SEO indexability. Smooth page transitions via Vue Router give an app-like feel without sacrificing search ranking. Production bundle optimisation and code-splitting included.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📝</div>
+        <div class="web-card-body">
+          <h4>WordPress CMS Integration</h4>
+          <p>Headless WordPress as the content backend — your marketing team manages all pages, blogs, and FAQs without touching code. Visual editing, scheduled publishing, and media library all included.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📐</div>
+        <div class="web-card-body">
+          <h4>Mobile-First Responsive Design</h4>
+          <p>Every page designed at 375px first, then scaled up. Steel traders operate on phones — the website is optimised for thumb-tap navigation, fast load on 4G, and readable typography at all sizes.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🔍</div>
+        <div class="web-card-body">
+          <h4>SEO Optimisation</h4>
+          <p>Technical SEO baked into every page: meta title/description templates, Open Graph tags, JSON-LD schema markup for auctions, auto-generated XML sitemap, canonical tags, and robots.txt configuration.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">💬</div>
+        <div class="web-card-body">
+          <h4>WhatsApp Chat Widget</h4>
+          <p>One-tap WhatsApp contact with pre-filled message templates. High-converting for Indian B2B where WhatsApp is the primary business communication channel. Supports multiple team member routing.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📈</div>
+        <div class="web-card-body">
+          <h4>Google Analytics &amp; Search Console</h4>
+          <p>GA4 event tracking with custom conversion goals (registrations, bid clicks, form fills). Search Console integration for keyword performance monitoring and crawl error alerts.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📰</div>
+        <div class="web-card-body">
+          <h4>Blog &amp; News Module</h4>
+          <p>WordPress-powered content hub for steel market news, price updates, and industry analysis. Category taxonomy, author profiles, related posts, and social sharing built in. SEO-optimised article templates.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">📋</div>
+        <div class="web-card-body">
+          <h4>Lead Capture &amp; Registration Forms</h4>
+          <p>Multi-step buyer and seller registration forms with inline validation. Auto email confirmation on submission. CRM-ready — all leads exported to CSV or connected to any CRM via webhook.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🏷️</div>
+        <div class="web-card-body">
+          <h4>Live Auction Teaser Widget</h4>
+          <p>Homepage widget powered by the web app's live API — shows upcoming and active auctions with countdown timers, current prices, and lot thumbnails. Updates in real time without page refresh.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🍪</div>
+        <div class="web-card-body">
+          <h4>Cookie Consent &amp; Compliance</h4>
+          <p>GDPR-lite cookie consent banner with granular preference controls (analytics, marketing, functional). Auto-blocks tracking scripts until consent is given. Privacy Policy and Terms pages linked.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🚀</div>
+        <div class="web-card-body">
+          <h4>Performance Optimisation</h4>
+          <p>Target PageSpeed score 90+ on mobile. Lazy-loaded images with WebP format, Brotli compression, CDN asset delivery, critical CSS inlining, and deferred third-party scripts for maximum Core Web Vitals.</p>
+        </div>
+      </div>
+
+      <div class="web-card">
+        <div class="web-card-icon">🔗</div>
+        <div class="web-card-body">
+          <h4>Social Media &amp; Newsletter Integration</h4>
+          <p>LinkedIn and Twitter share buttons on all content pages. Mailchimp newsletter signup widget with double opt-in flow. Social feed embed widget for Instagram or LinkedIn company page activity.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 03 — BRAND GUIDELINES
+════════════════════════════════════════ -->
+<section id="sec03">
+
+  <div class="section-hero">
+    <div class="watermark">03</div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="label">Section 03 · Brand Identity</div>
+        <h2>Brand Identity<br>System</h2>
+        <div class="hero-line"></div>
+        <p>A comprehensive 5-chapter brand guideline that codifies SteelBid's visual identity across every touchpoint — from digital UI to physical stationery, interior signage, and outdoor advertising.</p>
+        <div class="tech-badges">
+          <span class="badge">5 Chapters</span>
+          <span class="badge">30+ Assets</span>
+          <span class="badge">Print Ready</span>
+          <span class="badge">Digital First</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BRAND NAME SELECTION ── -->
+  <div style="background:#fff8f2; border-top:4px solid #e07b2a; padding:70px 0;">
+    <div class="container">
+
+      <div class="brand-name-grid" style="display:grid; grid-template-columns:1fr 1.6fr; gap:64px; align-items:start;">
+
+        <!-- Left: Name Display -->
+        <div>
+          <div class="label" style="margin-bottom:10px;">01.00 · Brand Name</div>
+          <div style="font-family:'Outfit',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#94a3b8; margin-bottom:28px;">Selected Name</div>
+
+          <!-- Big Name Display -->
+          <div style="background:#0d1b2a; border-radius:20px; padding:48px 40px; margin-bottom:24px; position:relative; overflow:hidden;">
+            <div style="position:absolute;right:-10px;top:-10px;font-family:'Outfit',sans-serif;font-weight:900;font-size:120px;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;">SB</div>
+            <div style="font-family:'Outfit',sans-serif; font-size:56px; font-weight:900; line-height:1; margin-bottom:8px;">
+              <span style="color:#ffffff;">Steel</span><span style="color:#e07b2a;">Bid</span>
+            </div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:12px;">B2B Steel Auction Platform</div>
+          </div>
+
+          <!-- Name Anatomy -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:#ffffff; border:1px solid #dde3ed; border-radius:12px; padding:20px; text-align:center;">
+              <div style="font-family:'Outfit',sans-serif; font-size:28px; font-weight:900; color:#0d1b2a; margin-bottom:6px;">Steel</div>
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#94a3b8;">The Industry</div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #dde3ed; border-radius:12px; padding:20px; text-align:center;">
+              <div style="font-family:'Outfit',sans-serif; font-size:28px; font-weight:900; color:#e07b2a; margin-bottom:6px;">Bid</div>
+              <div style="font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#94a3b8;">The Action</div>
+            </div>
+          </div>
+
+          <!-- Considered Names -->
+          <div style="margin-top:20px; background:#ffffff; border:1px solid #dde3ed; border-radius:12px; padding:20px;">
+            <div style="font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#94a3b8; margin-bottom:14px;">Also Considered</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-size:12px; font-weight:600; color:#94a3b8; background:#f1f5f9; border:1px solid #dde3ed; padding:4px 12px; border-radius:20px; text-decoration:line-through;">SteelMart</span>
+              <span style="font-size:12px; font-weight:600; color:#94a3b8; background:#f1f5f9; border:1px solid #dde3ed; padding:4px 12px; border-radius:20px; text-decoration:line-through;">BidForge</span>
+              <span style="font-size:12px; font-weight:600; color:#94a3b8; background:#f1f5f9; border:1px solid #dde3ed; padding:4px 12px; border-radius:20px; text-decoration:line-through;">MetalAuct</span>
+              <span style="font-size:12px; font-weight:600; color:#94a3b8; background:#f1f5f9; border:1px solid #dde3ed; padding:4px 12px; border-radius:20px; text-decoration:line-through;">IronBid</span>
+              <span style="font-size:12px; font-weight:600; color:#e07b2a; background:#fff3e8; border:1px solid rgba(224,123,42,0.3); padding:4px 12px; border-radius:20px; font-weight:800;">SteelBid ✓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Rationale -->
+        <div>
+          <div class="label" style="margin-bottom:10px;">Why This Name?</div>
+          <h3 style="font-family:'Outfit',sans-serif; font-size:clamp(26px,3vw,38px); font-weight:900; color:#0f172a; line-height:1.15; margin-bottom:20px;">The Logic Behind<br><span style="color:#e07b2a;">SteelBid</span></h3>
+          <p style="font-size:15px; color:#64748b; line-height:1.8; margin-bottom:36px;">Every great brand name earns trust before a single rupee is spent on marketing. SteelBid was chosen because it communicates exactly what the platform does — in two syllables, with zero ambiguity.</p>
+
+          <div style="display:flex; flex-direction:column; gap:16px;">
+
+            <div style="background:#ffffff; border:1px solid #dde3ed; border-left:4px solid #e07b2a; border-radius:0 12px 12px 0; padding:20px 24px;">
+              <div style="display:flex; align-items:flex-start; gap:16px;">
+                <div style="width:40px; height:40px; min-width:40px; background:#fff3e8; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;">⚡</div>
+                <div>
+                  <div style="font-family:'Outfit',sans-serif; font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">Instant Clarity</div>
+                  <div style="font-size:13.5px; color:#64748b; line-height:1.65;">"Steel" identifies the industry immediately. A Tata Steel procurement manager, a Kolkata distributor, or a small fabricator — all understand this is their platform the moment they see the name. No explanation needed.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #dde3ed; border-left:4px solid #0d1b2a; border-radius:0 12px 12px 0; padding:20px 24px;">
+              <div style="display:flex; align-items:flex-start; gap:16px;">
+                <div style="width:40px; height:40px; min-width:40px; background:#eef2f7; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;">🎯</div>
+                <div>
+                  <div style="font-family:'Outfit',sans-serif; font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">Action-First Positioning</div>
+                  <div style="font-size:13.5px; color:#64748b; line-height:1.65;">"Bid" is a verb — it implies participation, competition, and winning. Unlike passive names like "SteelMart" (a shop) or "SteelLink" (a connector), SteelBid signals that something exciting is happening here. You don't browse SteelBid — you compete.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #dde3ed; border-left:4px solid #10b981; border-radius:0 12px 12px 0; padding:20px 24px;">
+              <div style="display:flex; align-items:flex-start; gap:16px;">
+                <div style="width:40px; height:40px; min-width:40px; background:#ecfdf5; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;">🔍</div>
+                <div>
+                  <div style="font-family:'Outfit',sans-serif; font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">SEO Dominance</div>
+                  <div style="font-size:13.5px; color:#64748b; line-height:1.65;">The name is a natural keyword combination. Anyone searching "steel bid", "steel auction India", or "bid for steel online" will find SteelBid organically. The domain and brand name align perfectly with how buyers and sellers already search for this service.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #dde3ed; border-left:4px solid #6366f1; border-radius:0 12px 12px 0; padding:20px 24px;">
+              <div style="display:flex; align-items:flex-start; gap:16px;">
+                <div style="width:40px; height:40px; min-width:40px; background:#eef2ff; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;">🧠</div>
+                <div>
+                  <div style="font-family:'Outfit',sans-serif; font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">Memorable & Pronounceable</div>
+                  <div style="font-size:13.5px; color:#64748b; line-height:1.65;">Two short syllables. No hyphens. No numbers. Works equally well in English, Hindi, and Bengali — the three dominant languages of India's eastern steel belt. "SteelBid karo" flows naturally in everyday conversation at a mandi or a trade fair.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #dde3ed; border-left:4px solid #f5a623; border-radius:0 12px 12px 0; padding:20px 24px;">
+              <div style="display:flex; align-items:flex-start; gap:16px;">
+                <div style="width:40px; height:40px; min-width:40px; background:#fffbeb; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;">🏆</div>
+                <div>
+                  <div style="font-family:'Outfit',sans-serif; font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">Competitive Differentiation</div>
+                  <div style="font-size:13.5px; color:#64748b; line-height:1.65;">Competitors like Mjunction (complex), SteelEasy (passive), and Steelmart (marketplace) all lack the auction-specific energy of "Bid". SteelBid positions itself as the only platform built exclusively around competitive bidding — not just buying or selling.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="chapter-row">
+
+      <div class="chapter-card">
+        <div class="chapter-num">Chapter 01</div>
+        <h4>Brand Identity</h4>
+        <ul class="chapter-items">
+          <li>Brand Story</li>
+          <li>Brand Positioning</li>
+          <li>Colour Palette</li>
+          <li>Typeface System</li>
+          <li>Logo Mark &amp; Typeface</li>
+          <li>Primary &amp; Secondary Logo</li>
+          <li>Logo Scalability</li>
+          <li>Clear Space Rules</li>
+          <li>Logo Placement Guide</li>
+          <li>Partnership Logos</li>
+          <li>Do's &amp; Don'ts</li>
+          <li>Imagery Style</li>
+        </ul>
+      </div>
+
+      <div class="chapter-card">
+        <div class="chapter-num">Chapter 02</div>
+        <h4>Stationery</h4>
+        <ul class="chapter-items">
+          <li>Business Card</li>
+          <li>Letterhead</li>
+          <li>T-Shirt</li>
+          <li>Cap</li>
+          <li>Badge / ID Tag</li>
+          <li>Key Chain</li>
+          <li>Carry Bag</li>
+          <li>Mug</li>
+        </ul>
+      </div>
+
+      <div class="chapter-card">
+        <div class="chapter-num">Chapter 03</div>
+        <h4>Digital</h4>
+        <ul class="chapter-items">
+          <li>App Icon</li>
+          <li>Favicon</li>
+          <li>Digital Application UI</li>
+          <li>Email Signature</li>
+          <li>Social Media Templates</li>
+        </ul>
+      </div>
+
+      <div class="chapter-card">
+        <div class="chapter-num">Chapter 04</div>
+        <h4>Interior</h4>
+        <ul class="chapter-items">
+          <li>Front Office Branding</li>
+          <li>Conference Room</li>
+          <li>Indoor Advertisements</li>
+        </ul>
+      </div>
+
+      <div class="chapter-card">
+        <div class="chapter-num">Chapter 05</div>
+        <h4>Outdoors</h4>
+        <ul class="chapter-items">
+          <li>Signage</li>
+          <li>Outdoor Advertisements</li>
+          <li>Billboard Design</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ═══ BRAND IDENTITY PREVIEW ═══ -->
+    <div class="brand-preview-section">
+      <div class="preview-headline">A Glimpse of What You Will Receive</div>
+      <p class="preview-sub">Live-rendered mockups of your complete brand identity system</p>
+
+      <div class="preview-grid">
+
+        <!-- 1. Colour Palette -->
+        <div class="preview-card full-width">
+          <div class="preview-card-header">
+            <h4>Colour Palette</h4>
+            <span class="preview-chip">Brand Colours · 8 Swatches</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="swatches-row">
+              <div class="swatch">
+                <div class="swatch-color" style="background:#0D1B2A;"></div>
+                <div class="swatch-name">Navy</div>
+                <div class="swatch-hex">#0D1B2A</div>
+                <div class="swatch-rgb">RGB 13·27·42</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#1B3A5C;"></div>
+                <div class="swatch-name">Steel</div>
+                <div class="swatch-hex">#1B3A5C</div>
+                <div class="swatch-rgb">RGB 27·58·92</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#2C5F8A;"></div>
+                <div class="swatch-name">Mid Blue</div>
+                <div class="swatch-hex">#2C5F8A</div>
+                <div class="swatch-rgb">RGB 44·95·138</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#E07B2A;"></div>
+                <div class="swatch-name">Accent Orange</div>
+                <div class="swatch-hex">#E07B2A</div>
+                <div class="swatch-rgb">RGB 224·123·42</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#F5A623;"></div>
+                <div class="swatch-name">Gold</div>
+                <div class="swatch-hex">#F5A623</div>
+                <div class="swatch-rgb">RGB 245·166·35</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#E8EDF2; border:1px solid rgba(0,0,0,0.1);"></div>
+                <div class="swatch-name">Light</div>
+                <div class="swatch-hex">#E8EDF2</div>
+                <div class="swatch-rgb">RGB 232·237·242</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#64748B;"></div>
+                <div class="swatch-name">Muted</div>
+                <div class="swatch-hex">#64748B</div>
+                <div class="swatch-rgb">RGB 100·116·139</div>
+              </div>
+              <div class="swatch">
+                <div class="swatch-color" style="background:#FFFFFF; border:1px solid rgba(0,0,0,0.1);"></div>
+                <div class="swatch-name">White</div>
+                <div class="swatch-hex">#FFFFFF</div>
+                <div class="swatch-rgb">RGB 255·255·255</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Typography -->
+        <div class="preview-card full-width">
+          <div class="preview-card-header">
+            <h4>Typography System</h4>
+            <span class="preview-chip">Outfit 900 + Inter 400</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="typo-preview">
+              <div class="typo-row">
+                <span class="typo-label-col">H1</span>
+                <span class="typo-h1">Heading One</span>
+              </div>
+              <div class="typo-row">
+                <span class="typo-label-col">H2</span>
+                <span class="typo-h2">Heading Two</span>
+              </div>
+              <div class="typo-row">
+                <span class="typo-label-col">SH</span>
+                <span class="typo-sh">Subheading Style</span>
+              </div>
+              <div class="typo-row">
+                <span class="typo-label-col">Body</span>
+                <span class="typo-body">Body text appears in Inter Regular at 16px — clear, legible, and professional. Designed for long-form reading across the SteelBid platform.</span>
+              </div>
+              <div class="typo-row">
+                <span class="typo-label-col">A–Z</span>
+                <div>
+                  <div class="typo-alpha">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+                  <div class="typo-alpha">0 1 2 3 4 5 6 7 8 9</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Logo Design -->
+        <div class="preview-card full-width">
+          <div class="preview-card-header">
+            <h4>Logo Design System</h4>
+            <span class="preview-chip">Primary · Secondary · Icon Only</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="logo-preview-area">
+
+              <div class="logo-variant">
+                <div class="logo-variant-label">Primary Logo — On Dark Background</div>
+                <div class="logo-on-dark">
+                  <div class="steelbid-logo-lg">
+                    <div class="logo-icon-lg">S</div>
+                    <div class="logo-wm-dark">Steel<span class="bid">Bid</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="logo-variant">
+                <div class="logo-variant-label">Secondary Logo — On Light Background</div>
+                <div class="logo-on-light">
+                  <div class="steelbid-logo-lg">
+                    <div class="logo-icon-lg">S</div>
+                    <div class="logo-wm-light">Steel<span class="bid">Bid</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="logo-variant">
+                <div class="logo-variant-label">Icon Mark — Three Sizes (72px · 48px · 28px)</div>
+                <div class="logo-on-dark">
+                  <div class="logo-icon-sizes">
+                    <div class="logo-icon-sm" style="width:72px;height:72px;font-size:40px;border-radius:14px;">S</div>
+                    <div class="logo-icon-sm" style="width:48px;height:48px;font-size:26px;border-radius:9px;">S</div>
+                    <div class="logo-icon-sm" style="width:28px;height:28px;font-size:15px;border-radius:5px;">S</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="logo-variant">
+                <div class="logo-variant-label">Clear Space Demonstration</div>
+                <div class="logo-on-dark">
+                  <div style="border:1px dashed rgba(224,123,42,0.4);padding:28px;position:relative;display:inline-block;">
+                    <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:10px;color:#e07b2a;font-family:Outfit,sans-serif;font-weight:700;letter-spacing:0.15em;background:#07101e;padding:0 8px;">CLEAR SPACE = X</div>
+                    <div class="steelbid-logo-lg">
+                      <div class="logo-icon-lg">S</div>
+                      <div class="logo-wm-dark">Steel<span class="bid">Bid</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Business Card -->
+        <div class="preview-card full-width">
+          <div class="preview-card-header">
+            <h4>Business Card</h4>
+            <span class="preview-chip">Front &amp; Back · 380px Render</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="bizcard-wrap">
+              <div class="bizcard">
+                <div class="bizcard-front">
+                  <div class="bizcard-logo-row">
+                    <div class="bizcard-logo-icon">S</div>
+                    <div class="bizcard-wordmark">Steel<span class="bid">Bid</span></div>
+                  </div>
+                  <div>
+                    <div class="bizcard-name">Deepak Ranjan</div>
+                    <div class="bizcard-title-text">Founder &amp; Director</div>
+                  </div>
+                  <div class="bizcard-contacts">
+                    <div class="bizcard-contact">📞 +91 98765 43210</div>
+                    <div class="bizcard-contact">✉ deepak@steelbid.in</div>
+                    <div class="bizcard-contact">🌐 www.steelbid.in</div>
+                  </div>
+                </div>
+              </div>
+              <div class="bizcard-back">
+                <div style="font-family:Outfit,sans-serif;font-size:52px;font-weight:900;color:white;line-height:1;">S</div>
+                <div class="bizcard-back-wm">Steel<span style="color:rgba(255,255,255,0.65);">Bid</span></div>
+                <div class="bizcard-back-tag">Bid · Win · Get Steel</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Letterhead -->
+        <div class="preview-card full-width">
+          <div class="preview-card-header">
+            <h4>Letterhead</h4>
+            <span class="preview-chip">A4 Format Preview</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="letterhead">
+              <div class="lh-header">
+                <div class="lh-header-logo">
+                  <div class="lh-logo-icon">S</div>
+                  <div class="lh-wordmark">Steel<span class="bid">Bid</span></div>
+                </div>
+                <div class="lh-contact-info">
+                  <p>www.steelbid.in</p>
+                  <p>info@steelbid.in</p>
+                  <p>+91 98765 43210</p>
+                </div>
+              </div>
+              <div class="lh-body">
+                <div class="lh-date-line">Date: 25 May 2026</div>
+                <div class="lh-subject">Subject: Auction Confirmation — Lot #SB-2026-0421</div>
+                <div class="lh-text-line"></div>
+                <div class="lh-text-line med"></div>
+                <div class="lh-text-line"></div>
+                <div class="lh-text-line short"></div>
+                <br>
+                <div class="lh-text-line med"></div>
+                <div class="lh-text-line"></div>
+                <div class="lh-text-line short"></div>
+                <div class="lh-text-line med"></div>
+              </div>
+              <div class="lh-footer">
+                <p>CIN: U74999MH2026PTC000000 · GSTIN: 27XXXXX0000X1ZX</p>
+                <div class="lh-footer-accent">STEELBID.IN</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Social Post + 7. Email Signature side by side -->
+        <div class="preview-card">
+          <div class="preview-card-header">
+            <h4>Social Media Post</h4>
+            <span class="preview-chip">1:1 Square Format</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="social-post">
+              <div>
+                <div class="live-badge"><span class="live-dot"></span> Live Auction</div>
+              </div>
+              <div>
+                <div class="social-product">HR Steel Coil · 2.0mm</div>
+                <div style="font-size:13px;color:#6b82a0;margin-top:4px;">IS 2062 · Grade E250 · 20 MT Lot</div>
+              </div>
+              <div>
+                <div class="social-price-label">Base Price</div>
+                <div class="social-price">₹ 52,000 <span style="font-size:16px;color:#6b82a0;">/ MT</span></div>
+              </div>
+              <div class="social-footer-row">
+                <div class="social-logo-sm">
+                  <div class="social-logo-icon-sm">S</div>
+                  <div class="social-wm-sm">Steel<span class="bid">Bid</span></div>
+                </div>
+                <div class="bid-now-btn">Bid Now →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-card">
+          <div class="preview-card-header">
+            <h4>Email Signature</h4>
+            <span class="preview-chip">Complete Signature Block</span>
+          </div>
+          <div class="preview-card-body" style="display:flex;align-items:flex-start;">
+            <div class="email-sig">
+              <div class="sig-top">
+                <div class="sig-logo-block">
+                  <div class="sig-logo-icon">S</div>
+                  <div class="sig-wordmark">Steel<span class="bid">Bid</span></div>
+                </div>
+                <div class="sig-divider-v"></div>
+                <div>
+                  <div class="sig-person-name">Deepak Ranjan</div>
+                  <div class="sig-person-title">Founder &amp; Director</div>
+                </div>
+              </div>
+              <div class="sig-contact-row">
+                <div class="sig-contact-item">
+                  <span>📞</span>
+                  <span class="sig-contact-text">+91 98765 43210</span>
+                </div>
+                <div class="sig-contact-item">
+                  <span>✉</span>
+                  <span class="sig-contact-text">deepak@steelbid.in</span>
+                </div>
+                <div class="sig-contact-item">
+                  <span>📍</span>
+                  <span class="sig-contact-text">Mumbai, India</span>
+                </div>
+              </div>
+              <div class="sig-footer">
+                <div class="sig-social-icon">in</div>
+                <div class="sig-social-icon">𝕏</div>
+                <div class="sig-social-icon">▶</div>
+                <div class="sig-website">www.steelbid.in</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Billboard -->
+        <div class="preview-card full-width">
+          <div class="preview-card-header">
+            <h4>Billboard Design</h4>
+            <span class="preview-chip">16:9 Outdoor Format</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="billboard-wrap">
+              <div class="billboard-frame">
+                <div class="billboard-design">
+                  <div class="billboard-left">
+                    <div class="billboard-tagline">Bid. Win.<br><span class="hl">Get Steel.</span></div>
+                    <div class="billboard-url">www.steelbid.in</div>
+                    <div class="billboard-cta">Register Free →</div>
+                  </div>
+                  <div class="billboard-right">
+                    <div class="billboard-logo-icon">S</div>
+                    <div class="billboard-wm">Steel<span class="bid">Bid</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="billboard-stand"></div>
+              <div class="billboard-base"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. T-Shirt -->
+        <div class="preview-card">
+          <div class="preview-card-header">
+            <h4>T-Shirt Mockup</h4>
+            <span class="preview-chip">CSS · SVG Shape</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="tshirt-wrap">
+              <svg class="tshirt-svg" width="280" height="300" viewBox="0 0 280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M70 40 L0 80 L30 120 L60 100 L60 280 L220 280 L220 100 L250 120 L280 80 L210 40 C200 55 175 65 140 65 C105 65 80 55 70 40 Z" fill="#0d1f36" stroke="#e07b2a" stroke-width="1.5" stroke-opacity="0.4"/>
+                <path d="M70 40 C90 70 115 75 140 75 C165 75 190 70 210 40" fill="#07101e" stroke="#e07b2a" stroke-width="1.5" stroke-opacity="0.6"/>
+                <rect x="110" y="110" width="60" height="60" rx="10" fill="#e07b2a"/>
+                <text x="140" y="152" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="900" font-size="34" fill="white">S</text>
+                <text x="127" y="195" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="13" fill="white">Steel</text>
+                <text x="162" y="195" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="13" fill="#e07b2a">Bid</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Do's and Don'ts -->
+        <div class="preview-card">
+          <div class="preview-card-header">
+            <h4>Logo Do's &amp; Don'ts</h4>
+            <span class="preview-chip">Brand Usage Rules</span>
+          </div>
+          <div class="preview-card-body">
+            <div class="dos-donts-grid">
+              <div class="dos-col">
+                <div class="col-header">✓&nbsp; Do's</div>
+                <div class="col-items">
+                  <div class="col-item">
+                    <span class="col-item-icon">✅</span>
+                    <p>Use the logo on approved dark navy or white backgrounds only</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">✅</span>
+                    <p>Maintain minimum clear space of 1× the icon height on all sides</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">✅</span>
+                    <p>Use vector SVG or PDF files for all print applications</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">✅</span>
+                    <p>Use the full-colour version as the primary logo wherever possible</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">✅</span>
+                    <p>Scale proportionally — always lock aspect ratio when resizing</p>
+                  </div>
+                </div>
+              </div>
+              <div class="donts-col">
+                <div class="col-header">✗&nbsp; Don'ts</div>
+                <div class="col-items">
+                  <div class="col-item">
+                    <span class="col-item-icon">🚫</span>
+                    <p>Do not stretch, skew, or rotate the logo in any direction</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">🚫</span>
+                    <p>Do not place the logo on busy photos without an overlay</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">🚫</span>
+                    <p>Do not change the orange accent colour to any other colour</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">🚫</span>
+                    <p>Do not add drop shadows, glows, or outlines to the logo mark</p>
+                  </div>
+                  <div class="col-item">
+                    <span class="col-item-icon">🚫</span>
+                    <p>Do not use low-resolution PNG files for print or large-format applications</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">S</div>
+          <div class="footer-wordmark">Steel<span class="bid">Bid</span></div>
+        </div>
+        <p class="footer-desc">Premium Deliverables Specification — prepared by Think To Share. This document outlines every feature, page, and brand asset included in the SteelBid engagement.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Section 01 · Web App</h5>
+        <ul>
+          <li><span>15 Features</span> fully specified</li>
+          <li>Buyer Suite · 4 features</li>
+          <li>Seller Portal · 3 features</li>
+          <li>Operations &amp; Admin · 5 features</li>
+          <li>Cloud &amp; Security · 3 features</li>
+          <li>Auction flow · 6 steps</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Section 02 · Website</h5>
+        <ul>
+          <li><span>28 Pages</span> fully mapped</li>
+          <li>7 sitemap groups</li>
+          <li><span>12 Features</span> specified</li>
+          <li>Nuxt.js SSR + WordPress CMS</li>
+          <li>SEO, Analytics, WhatsApp</li>
+          <li>Mobile-first responsive</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Section 03 · Brand</h5>
+        <ul>
+          <li><span>5 Chapters</span> comprehensive</li>
+          <li>30+ brand assets</li>
+          <li>Colour palette · Typography</li>
+          <li>Logo system · Stationery</li>
+          <li>Digital + Interior + Outdoor</li>
+          <li>Do's &amp; Don'ts guidelines</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 SteelBid · All deliverables specification prepared by <span class="agency">Think To Share</span></p>
+      <p>parag@thinktoshare.com · www.thinktoshare.com</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const tabBtns = document.querySelectorAll('.tab-btn');
+const cards = document.querySelectorAll('.feat-card');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.style.display = 'flex';
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(10px)';
+        requestAnimationFrame(() => {
+          card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
           card.style.opacity = '1';
-          card.style.transform = 'scale(1)';
-        } else {
-          if (card.classList.contains(category)) {
-            card.style.display = 'flex';
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          } else {
-            card.style.display = 'none';
-          }
-        }
-      });
-    }
-  </script>
+          card.style.transform = 'translateY(0)';
+        });
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
