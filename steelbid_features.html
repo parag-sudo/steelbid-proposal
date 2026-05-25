@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SteelBid — World-Class Feature Specifications</title>
+  
+  <!-- Modern Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy:       #0a192f;
+      --navy-light: #172a45;
+      --steel:      #1b3a5c;
+      --mid-blue:   #2c5f8a;
+      --accent:     #e07b2a;
+      --accent-rgb: 224, 123, 42;
+      --gold:       #f5a623;
+      --light-bg:   #f8fafc;
+      --card-bg:    #ffffff;
+      --text-main:  #1e293b;
+      --text-muted: #64748b;
+      --green:      #10b981;
+      --border:     #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── PREMIUM HEADER ─── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 60%, var(--mid-blue) 100%);
+      color: #ffffff;
+      padding: 80px 20px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .header-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(224, 123, 42, 0.15);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--gold) 0%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: clamp(16px, 2vw, 18px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* ─── TABS NAV ─── */
+    .tabs-container {
+      max-width: 900px;
+      margin: -35px auto 40px;
+      position: relative;
+      z-index: 10;
+      padding: 0 20px;
+    }
+
+    .tabs-wrapper {
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      background: transparent;
+      border: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 12px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tab-btn:hover {
+      color: var(--navy);
+      background-color: var(--light-bg);
+    }
+
+    .tab-btn.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
+      box-shadow: 0 4px 12px rgba(10, 25, 47, 0.2);
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+    }
+
+    /* ─── FEATURE SECTION / GRID ─── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: transparent;
+      transition: background-color 0.3s;
+    }
+
+    .feature-card.buyer::before { background: linear-gradient(90deg, var(--mid-blue), #6366f1); }
+    .feature-card.seller::before { background: linear-gradient(90deg, var(--accent), var(--gold)); }
+    .feature-card.admin::before { background: linear-gradient(90deg, var(--navy), var(--steel)); }
+    .feature-card.platform::before { background: linear-gradient(90deg, var(--green), #34d399); }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(10, 25, 47, 0.08);
+      border-color: rgba(var(--accent-rgb), 0.15);
+    }
+
+    .card-top {
+      margin-bottom: 24px;
+    }
+
+    .feature-icon-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .buyer .feature-icon { background: rgba(99, 102, 241, 0.1); }
+    .seller .feature-icon { background: rgba(245, 166, 35, 0.1); }
+    .admin .feature-icon { background: rgba(10, 25, 47, 0.08); }
+    .platform .feature-icon { background: rgba(16, 185, 129, 0.1); }
+
+    .category-tag {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .buyer .category-tag { background: rgba(99, 102, 241, 0.08); color: #6366f1; }
+    .seller .category-tag { background: rgba(224, 123, 42, 0.08); color: var(--accent); }
+    .admin .category-tag { background: rgba(10, 25, 47, 0.06); color: var(--navy); }
+    .platform .category-tag { background: rgba(16, 185, 129, 0.08); color: var(--green); }
+
+    .feature-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .feature-points {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .feature-points li {
+      font-size: 13.5px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .feature-points li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+
+    .buyer .feature-points li::before { color: #6366f1; }
+    .seller .feature-points li::before { color: var(--accent); }
+    .admin .feature-points li::before { color: var(--navy); }
+    .platform .feature-points li::before { color: var(--green); }
+
+    /* ─── PREMIUM BENEFIT BOX ─── */
+    .benefit-box {
+      background-color: var(--light-bg);
+      border-radius: 12px;
+      padding: 16px;
+      border-left: 3px solid;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: auto;
+    }
+
+    .buyer .benefit-box { border-left-color: #6366f1; background-color: rgba(99, 102, 241, 0.02); }
+    .seller .benefit-box { border-left-color: var(--accent); background-color: rgba(224, 123, 42, 0.02); }
+    .admin .benefit-box { border-left-color: var(--navy); background-color: rgba(10, 25, 47, 0.015); }
+    .platform .benefit-box { border-left-color: var(--green); background-color: rgba(16, 185, 129, 0.02); }
+
+    .benefit-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .benefit-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    .benefit-text strong {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .buyer .benefit-text strong { color: #4f46e5; }
+    .seller .benefit-text strong { color: #c25e14; }
+    .admin .benefit-text strong { color: var(--navy); }
+    .platform .benefit-text strong { color: #047857; }
+
+    /* ─── PROCESS FLOW ─── */
+    .section-headline {
+      text-align: center;
+      margin: 80px 0 40px;
+    }
+
+    .section-headline h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .section-headline p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      position: relative;
+    }
+
+    .flow-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .flow-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 6px 15px rgba(10, 25, 47, 0.15);
+      border: 2px solid #ffffff;
+      outline: 2px solid var(--border);
+    }
+
+    .flow-step h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .flow-step p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding: 0 8px;
+    }
+
+    /* ─── PRINT / FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: var(--navy);
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+      border-top: 4px solid var(--accent);
+    }
+
+    footer p {
+      margin-bottom: 8px;
+    }
+
+    .footer-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span {
+      color: var(--accent);
+    }
+
+    /* Print & Responsive optimization */
+    @media (max-width: 768px) {
+      .tabs-wrapper {
+        justify-content: flex-start;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-content">
+      <span class="badge">Platform Specifications</span>
+      <h1>SteelBid <span>Feature Portfolio</span></h1>
+      <p class="subtitle">A detailed breakdown of all user-facing systems, operational tools, and enterprise cloud infrastructure included in your custom build.</p>
+    </div>
+  </header>
+
+  <!-- TAB CONTROLS -->
+  <div class="tabs-container">
+    <div class="tabs-wrapper">
+      <button class="tab-btn active" onclick="filterFeatures('all', this)">All Systems</button>
+      <button class="tab-btn" onclick="filterFeatures('buyer', this)">Buyer Suite</button>
+      <button class="tab-btn" onclick="filterFeatures('seller', this)">Seller Portal</button>
+      <button class="tab-btn" onclick="filterFeatures('admin', this)">Operations &amp; Admin</button>
+      <button class="tab-btn" onclick="filterFeatures('platform', this)">Cloud &amp; Security</button>
+    </div>
+  </div>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main>
+    
+    <!-- FEATURES PORTFOLIO GRID -->
+    <div class="feature-grid" id="featureGrid">
+      
+      <!-- BUYER 1 -->
+      <div class="feature-card buyer">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">⚡</div>
+            <span class="category-tag">Buyer Suite</span>
+          </div>
+          <h3 class="feature-title">Live Real-Time Bidding Engine</h3>
+          <p class="feature-desc">A highly-optimized bidding workspace where every auction tick updates dynamically in real time without refreshing the page.</p>
+          <ul class="feature-points">
+            <li>Dynamic real-time countdown timer</li>
+            <li>Instant on-screen outbid visual cues</li>
+            <li>Last-minute automatic bid extension</li>
+            <li>Full transparent bidding history logs</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Drives excitement and trust. Auto-extension stops last-second sniping, ensuring the seller secures maximum market price.
+          </div>
+        </div>
+      </div>
+
+      <!-- BUYER 2 -->
+      <div class="feature-card buyer">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">📱</div>
+            <span class="category-tag">Buyer Suite</span>
+          </div>
+          <h3 class="feature-title">Mobile-Responsive Platform</h3>
+          <p class="feature-desc">Flawless touch-optimized user interfaces tailored for mobile, tablet, and desktop screens for on-the-go bidding.</p>
+          <ul class="feature-points">
+            <li>Fast loading profiles for rural areas</li>
+            <li>Touch-friendly active bid panel</li>
+            <li>Optimized layout for site engineers</li>
+            <li>Direct image upload capability</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Your buyers can monitor and place bids directly from their mobile device while inspecting materials in a steel yard.
+          </div>
+        </div>
+      </div>
+
+      <!-- BUYER 3 -->
+      <div class="feature-card buyer">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">💳</div>
+            <span class="category-tag">Buyer Suite</span>
+          </div>
+          <h3 class="feature-title">Secure Razorpay Escrow Integration</h3>
+          <p class="feature-desc">Professional fund protection integration keeping payment escrow secure until both parties declare shipment successful.</p>
+          <ul class="feature-points">
+            <li>Indian Cards, NetBanking, & UPI gateway</li>
+            <li>Secured holds and release mechanisms</li>
+            <li>Automated payment invoice generator</li>
+            <li>Instant transaction refund processing</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Removes transaction friction. Buyers bid comfortably knowing their funds are fully protected until the steel is successfully received.
+          </div>
+        </div>
+      </div>
+
+      <!-- BUYER 4 -->
+      <div class="feature-card buyer">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">🔔</div>
+            <span class="category-tag">Buyer Suite</span>
+          </div>
+          <h3 class="feature-title">Instant Smart WhatsApp Alerts</h3>
+          <p class="feature-desc">Direct system notifications routing critical auction updates straight to the buyer's WhatsApp number and email inbox.</p>
+          <ul class="feature-points">
+            <li>Instant "Outbid" alerts with direct link</li>
+            <li>Warning alerts when auction ends soon</li>
+            <li>Successful registration/KYC confirmations</li>
+            <li>Winning bids and shipping tracking details</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Increases bids without effort. Directly notifies buyers the instant they are outbid, prompting them back into the auction to bid higher.
+          </div>
+        </div>
+      </div>
+
+      <!-- SELLER 1 -->
+      <div class="feature-card seller">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">📋</div>
+            <span class="category-tag">Seller Portal</span>
+          </div>
+          <h3 class="feature-title">Seller Consignment &amp; Active Auctions</h3>
+          <p class="feature-desc">A dedicated tracking workspace for sellers to monitor live bids, bidder engagement, and transaction milestones for their listed lots.</p>
+          <ul class="feature-points">
+            <li>Real-time bidder counter on listed materials</li>
+            <li>Live bidding activity feeds and leaderboard</li>
+            <li>Automatic notifications of secured buyer escrow</li>
+            <li>Structured dispatch &amp; weight confirmation guides</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Sellers get 100% transparency on bid progression and security deposits. They know exactly when to dispatch metal without manual phone calls.
+          </div>
+        </div>
+      </div>
+
+      <!-- SELLER 2 -->
+      <div class="feature-card seller">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">⚖️</div>
+            <span class="category-tag">Seller Portal</span>
+          </div>
+          <h3 class="feature-title">Dispute &amp; Claim Raising Center</h3>
+          <p class="feature-desc">A formal safety-net console enabling sellers to flag payment issues, logistics delays, or buyer defaults directly to platform operations.</p>
+          <ul class="feature-points">
+            <li>One-click dispute trigger on any active/closed deal</li>
+            <li>Digital uploader for weight slips and proof files</li>
+            <li>Escrow-freeze system block on contested lots</li>
+            <li>Direct mediation chat link with platform admins</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Guarantees peace of mind. If a buyer behaves in bad faith, the seller can instantly raise a dispute to freeze the escrow funds until resolved.
+          </div>
+        </div>
+      </div>
+
+      <!-- SELLER 3 -->
+      <div class="feature-card seller">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">📈</div>
+            <span class="category-tag" style="background: rgba(224, 123, 42, 0.08); color: var(--accent);">Optional Add-on</span>
+          </div>
+          <h3 class="feature-title">Seller Sales Analytics <span style="font-size: 11px; font-weight: bold; color: var(--accent); background: rgba(224, 123, 42, 0.1); padding: 2px 8px; border-radius: 4px; margin-left: 6px; vertical-align: middle;">Optional</span></h3>
+          <p class="feature-desc">Advanced analytical reporting tracing past sales patterns, successful tonnages, average bid values, and buyer geography.</p>
+          <ul class="feature-points">
+            <li>Average price per ton historical trend charts</li>
+            <li>Monthly listed vs successfully sold tonnage reports</li>
+            <li>Buyer demographic and search keyword metrics</li>
+            <li>Downloadable ledgers and performance sheets</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Empowers high-volume sellers with enterprise-grade data intelligence to fine-tune future production rates and bidding reserves.
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN 1 -->
+      <div class="feature-card admin">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">🖥️</div>
+            <span class="category-tag">Admin Panel</span>
+          </div>
+          <h3 class="feature-title">Operations Command Centre</h3>
+          <p class="feature-desc">A unified admin interface giving you full command over auctions, active bidders, approvals, and transaction volumes.</p>
+          <ul class="feature-points">
+            <li>Single-click active listing publisher</li>
+            <li>Manual auction freeze & override keys</li>
+            <li>Escrow hold-and-release manager</li>
+            <li>Direct Dispute & Negotiation panels</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            You can run the entire platform with just 1 or 2 operators. Easily step in to resolve user errors or dispute questions.
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN 2 -->
+      <div class="feature-card admin">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">👤</div>
+            <span class="category-tag">Admin Panel</span>
+          </div>
+          <h3 class="feature-title">Advanced GST &amp; KYC Verification</h3>
+          <p class="feature-desc">Automated business KYC systems ensuring only legally verified corporate steel actors participate in active auctions.</p>
+          <ul class="feature-points">
+            <li>GST & PAN registration forms</li>
+            <li>Corporate bank account validators</li>
+            <li>Digital document vetting workspace</li>
+            <li>Blacklisted company blocking system</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Keeps your platform fully secure and trusted. Eliminates non-paying bidders, fake profiles, and bad-faith sellers completely.
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN 3 -->
+      <div class="feature-card admin">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">📤</div>
+            <span class="category-tag">Admin Panel</span>
+          </div>
+          <h3 class="feature-title">Smart Steel Listing Control Center</h3>
+          <p class="feature-desc">A unified curation workspace managed by administrators to vet, standardise, time-schedule, and publish material listings.</p>
+          <ul class="feature-points">
+            <li>Verification manager for chemical grade details</li>
+            <li>Tonnage & physical dimension parameter locks</li>
+            <li>Seller mill certificate & quality document validator</li>
+            <li>Lot launch queues and timed scheduling panel</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Gives the platform administrator 100% control over inventory quality. Prevents errors and inaccurate descriptions before buyers see them.
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN 4 -->
+      <div class="feature-card admin">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">🔑</div>
+            <span class="category-tag">Admin Panel</span>
+          </div>
+          <h3 class="feature-title">Private Reserve Pricing Control Room</h3>
+          <p class="feature-desc">Admin-locked control settings to review hidden reserve limits, manage bid matching, and resolve edge negotiations.</p>
+          <ul class="feature-points">
+            <li>Secure hidden reserve review and validation dashboard</li>
+            <li>Real-time alert indicators if the bid is close to reserve</li>
+            <li>Post-auction seller matching & mediation panels</li>
+            <li>Lot-release manual overrides for agreed settlements</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Keeps transaction conversion high. Admins can mediate directly when a live bid finishes just below reserve, securing deals that would otherwise fail.
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN 5 -->
+      <div class="feature-card admin">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">💵</div>
+            <span class="category-tag">Admin Panel</span>
+          </div>
+          <h3 class="feature-title">Automated Commissions &amp; Billing</h3>
+          <p class="feature-desc">Intelligent transaction billing calculation, instantly calculating platform fee percentages and outputting invoices.</p>
+          <ul class="feature-points">
+            <li>Custom platform commission percentages</li>
+            <li>Automated GST invoice rendering</li>
+            <li>Automatic buyer/seller payout drafts</li>
+            <li>Full audit trial downloads for accountant</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Eliminates all operational billing efforts. Invoices and commission percentages are computed, formatted, and emailed automatically.
+          </div>
+        </div>
+      </div>
+
+      <!-- PLATFORM 1 -->
+      <div class="feature-card platform">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">☁️</div>
+            <span class="category-tag">Platform &amp; Infrastructure</span>
+          </div>
+          <h3 class="feature-title">AWS Enterprise Cloud Architecture</h3>
+          <p class="feature-desc">Modern enterprise-grade cloud deployment leveraging Amazon Web Services for 99.9% uptime and extreme reliability.</p>
+          <ul class="feature-points">
+            <li>Dynamic elastic server auto-scaling</li>
+            <li>Global CDN for superfast image loads</li>
+            <li>Automatic hourly secure db backups</li>
+            <li>Isolated developer/staging/prod clouds</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Guarantees flawless performance when 5,000 bidders join an intense live bidding event. No page sluggishness or database crashes.
+          </div>
+        </div>
+      </div>
+
+      <!-- PLATFORM 2 -->
+      <div class="feature-card platform">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">🛡️</div>
+            <span class="category-tag">Platform &amp; Infrastructure</span>
+          </div>
+          <h3 class="feature-title">OWASP Grade Enterprise Security</h3>
+          <p class="feature-desc">Rigorous data security and network protection keeping sensitive client records and financial transactions safe.</p>
+          <ul class="feature-points">
+            <li>SSL/TLS encrypted data channels</li>
+            <li>Advanced DDoS attack defense rules</li>
+            <li>Hashed database password algorithms</li>
+            <li>Compliant with Indian DPDP Act rules</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            Prevents data theft, hacking, and platform disruption. Eliminates liability risks with corporate banks, sellers, and regulators.
+          </div>
+        </div>
+      </div>
+
+      <!-- PLATFORM 3 -->
+      <div class="feature-card platform">
+        <div class="card-top">
+          <div class="feature-icon-wrapper">
+            <div class="feature-icon">📦</div>
+            <span class="category-tag">Platform &amp; Infrastructure</span>
+          </div>
+          <h3 class="feature-title">Asset Handover &amp; Documentation</h3>
+          <p class="feature-desc">A complete package of developer files, configurations, and manuals ensuring you have permanent, autonomous control.</p>
+          <ul class="feature-points">
+            <li>100% clean production source code</li>
+            <li>API blueprints & data flow schema</li>
+            <li>AWS configuration instructions guide</li>
+            <li>3-month comprehensive warranty coverage</li>
+          </ul>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-text">
+            <strong>Business Advantage</strong>
+            You own everything. There is no vendor lock-in. Any competent future engineer can easily pick up the files and add features.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WORKFLOW FLOW CHART -->
+    <div class="section-headline">
+      <h2>How a Typical Auction Works</h2>
+      <p>A simple, secure, and transparent transactional flow for buyers, sellers, and administrators.</p>
+    </div>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-circle">1</div>
+        <h4>Seller Lists Steel</h4>
+        <p>Seller uploads grade, specs, tons, and reserve price.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">2</div>
+        <h4>Admin Approves</h4>
+        <p>Operations checks certificates and publishes the auction.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">3</div>
+        <h4>Smart Notifications</h4>
+        <p>Verified buyers are alerted on WhatsApp &amp; Email.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">4</div>
+        <h4>Real-Time Auction</h4>
+        <p>Buyers place bids live. Extensions prevent sniping.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">5</div>
+        <h4>Winner Declared</h4>
+        <p>Highest bid above reserve is instantly notified.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-circle">6</div>
+        <h4>Secure Escrow</h4>
+        <p>Razorpay holds funds until successful delivery confirmation.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Steel<span>Bid</span></div>
+    <p>Premium Digital Auction Platform Feature Specifications Portfolio</p>
+    <p style="opacity: 0.4; font-size: 11px; margin-top: 20px;">&copy; 2026 SteelBid. All rights to technology architecture and intellectual property reserved.</p>
+  </footer>
+
+  <!-- JS TAB FILTER LOGIC -->
+  <script>
+    function filterFeatures(category, btnElement) {
+      // 1. Manage Active Tab Class
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+      
+      // 2. Hide/Show Cards Based on Class
+      const cards = document.querySelectorAll('.feature-card');
+      
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+        } else {
+          if (card.classList.contains(category)) {
+            card.style.display = 'flex';
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
